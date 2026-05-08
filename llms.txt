@@ -1,0 +1,46 @@
+# Andrea Burchiani — burghi.design
+
+> Personal portfolio of Andrea Burchiani, an Italian graphic and communication designer based between Milano and Ancona. The site collects editorial, UX/UI and digital projects produced between 2023 and 2025, mostly during the Bachelor's and Master's program in Communication Design at Politecnico di Milano, and current work at Maize.io.
+
+## About
+
+- Name: Andrea Burchiani
+- Born: 12 October 2000
+- Location: Milano ↔ Ancona, Italy
+- Education: Bachelor's + Master's degree, Politecnico di Milano (Communication Design)
+- Currently: Designer at Maize.io
+- Email: andreaburchiani00@gmail.com
+- Instagram: https://www.instagram.com/andreaburchiani.bip/
+- CV: https://drive.google.com/file/d/1DIEHX7AeN_mUJnqSpUiJHyiFh9mIZLk8/view
+
+## Site map
+
+- [Home / Portfolio](https://burghi.design/): Main landing with project grid, career, bookshelf and contacts
+- [Projects index](https://burghi.design/projects-index.html): Compact list of all projects by name, field and year
+- [Bookshelf](https://burghi.design/bookshelf-+.html): Curated list of references and inspirations
+- [Contacts](https://burghi.design/footer-big.html): Personal info and contact links
+
+## Projects
+
+### Editorial
+
+- [Patina (2024)](https://burghi.design/projects/patina.html): Editorial project / wunderkammer about collecting. Issue N°3 focuses on collecting sounds. Group project at Politecnico di Milano. Skills: creative direction, curatorship, layout design.
+- [Częstochowa (2025)](https://burghi.design/projects/czesto.html): Editorial project on the Polish city of Częstochowa.
+- [Policatto (2024)](https://burghi.design/projects/policatto.html): Editorial project.
+- [Referto (2024)](https://burghi.design/projects/referto.html): Editorial project.
+- [Spacca (2024)](https://burghi.design/projects/spacca.html): Editorial project.
+- [Tesi (2025)](https://burghi.design/projects/tesi.html): Master's thesis editorial project.
+- [W-Hysteria (2024)](https://burghi.design/projects/w-hysteria.html): Editorial project.
+
+### UX / UI
+
+- [Bottleneck (2024)](https://burghi.design/projects/bottleneck.html): UX/UI project on a notification-management system that filters and prioritises desktop and mobile alerts.
+- [TBD (2023)](https://burghi.design/projects/tbd.html): UX/UI project.
+
+### Other
+
+- [Tripup](https://burghi.design/projects/tripup.html): Travel-related project.
+
+## Optional
+
+- [Sitemap (XML)](https://burghi.design/sitemap.xml)

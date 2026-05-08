@@ -1,0 +1,486 @@
+/* ============================================================
+   BURGHI.DESIGN — Tailwind source
+   Build: npm run build  →  ./main.css
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   1. ROOT TOKENS
+   ============================================================ */
+
+:root {
+    --text-scale: 0.7695;
+    --footer-height: calc(2.5rem + 1.2vw);
+    --green: #3fb66e;
+    --green-header: #29ae4d;
+    --black-85: rgba(0, 0, 0, 0.85);
+    --black-83: rgba(0, 0, 0, 0.83);
+    --black-89: rgba(0, 0, 0, 0.89);
+    --black-49: rgba(0, 0, 0, 0.49);
+    --black-40: rgba(0, 0, 0, 0.40);
+    --white: #ffffff;
+    --font-writer: 'PP Writer', Georgia, serif;
+    --font-grotesk: 'KMR Melange Grotesk', 'Helvetica Neue', sans-serif;
+}
+
+/* ============================================================
+   2. FONT FACES
+   ============================================================ */
+
+@font-face { font-family: 'PP Writer'; font-weight: 500; font-style: normal; font-display: swap; src: url('../fonts/PPWriter-Book.woff2') format('woff2'); }
+@font-face { font-family: 'PP Writer'; font-weight: 300; font-style: normal; font-display: swap; src: url('../fonts/PPWriter-Thin.woff2') format('woff2'); }
+@font-face { font-family: 'KMR Melange Grotesk'; font-weight: 600; font-style: normal; font-display: swap; src: url('../fonts/KMRMelangeGrotesk-SemiBold.woff2') format('woff2'); }
+@font-face { font-family: 'KMR Melange Grotesk'; font-weight: 200; font-style: normal; font-display: swap; src: url('../fonts/KMRMelangeGrotesk-SemiLight.woff2') format('woff2'); }
+@font-face { font-family: 'KMR Melange Grotesk'; font-weight: 500; font-style: normal; font-display: swap; src: url('../fonts/KMRMelangeGrotesk-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'KMR Melange Grotesk'; font-weight: 400; font-style: normal; font-display: swap; src: url('../fonts/KMRMelangeGrotesk-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'KMR Melange Grotesk'; font-weight: 500; font-style: normal; font-display: swap; src: url('../fonts/KMRMelangeGrotesk-Book.woff2') format('woff2'); }
+
+/* ============================================================
+   3. BASE / RESET  (Tailwind preflight is disabled)
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-text-size-adjust: none; }
+body { min-height: 100vh; background-color: var(--white); color: var(--black-85); overflow: hidden; }
+body.no-scroll { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+a:active { opacity: 0.7; }
+img, video { display: block; max-width: 100%; height: auto; }
+hr { background: none; border: 0; border-top: 0.5pt solid #000; height: 0; display: block; margin: 0.2rem 0; }
+sub { position: relative; vertical-align: baseline; top: 0.3em; }
+sup { position: relative; vertical-align: baseline; top: -0.4em; }
+ol { padding: 0 0 0 2.5em; list-style-type: decimal-leading-zero; }
+ul { padding: 0 0 0 2em; }
+ul.lineated { padding: 0; list-style: none; margin: 0 0 0 3em; text-indent: -3em; }
+blockquote { padding: 0 0 0 2em; }
+.small-caps { font-variant: small-caps; text-transform: lowercase; }
+
+/* ============================================================
+   4. COMPONENTS
+   ============================================================ */
+
+@layer components {
+
+    /* -------- 4.1 Typography -------------------------------- */
+    .corpo,
+    .Index,
+    .legenda,
+    .headers {
+        font-family: var(--font-writer);
+        font-size: calc(1.2rem * var(--text-scale));
+        line-height: calc(1.44rem * var(--text-scale));
+        font-weight: 500;
+        display: block;
+        font-feature-settings: "case";
+    }
+    .corpo,   .corpo a    { color: var(--black-83); }
+    .Index,   .Index a    { color: var(--black-49); }
+    .legenda, .legenda a  { color: var(--black-89); }
+    .headers, .headers a  { color: var(--green-header); font-weight: 600; line-height: 1.026; }
+    .Index a:hover,
+    .legenda a:hover { color: var(--black-85); }
+
+    .caption {
+        font-family: serif;
+        font-size: calc(0.95rem * var(--text-scale));
+        line-height: 1.2825;
+        color: rgba(0, 0, 0, 0.29);
+        display: block;
+    }
+    .caption a { text-decoration: underline; color: var(--black-85); }
+
+    /* -------- 4.2 3-column desktop layout ------------------- */
+    .site-wrapper { display: flex; width: 100%; min-height: 100vh; position: relative; }
+
+    .col-projects,
+    .col-bookshelf,
+    .col-career {
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: none;
+        flex-shrink: 0;
+        scrollbar-width: none;
+    }
+    .col-projects::-webkit-scrollbar,
+    .col-bookshelf::-webkit-scrollbar,
+    .col-career::-webkit-scrollbar,
+    .overlay-backdrop::-webkit-scrollbar { width: 0; display: none; }
+
+    .col-projects  { width: 40%; }
+    .col-bookshelf {
+        width: 28%;
+        border-left:  0.5pt solid #000;
+        border-right: 0.5pt solid #000;
+    }
+    .col-career    { width: 32%; }
+    .col-bookshelf-inner { width: 100%; padding: 0 0.8rem; }
+
+    /* -------- 4.3 Section headers --------------------------- */
+    .section-header {
+        position: sticky; top: 0; z-index: 10;
+        background: var(--white);
+        padding: 1rem 0.8rem 0.5rem;
+        display: flex; justify-content: space-between; align-items: baseline;
+    }
+    .section-header::after {
+        content: ''; position: absolute; bottom: 0;
+        left: 0.8rem; right: 0.8rem;
+        border-bottom: 0.5pt solid #000;
+    }
+    .section-header-bookshelf { padding: 1rem 0 0.5rem; }
+    .section-header-bookshelf::after { left: 0; right: 0; }
+    .section-header-index { padding: 1rem 0.8rem 0.5rem; }
+    .section-header-index::after { display: none; }
+
+    /* -------- 4.4 Content padding per column ---------------- */
+    .projects-content  { padding: 0.8rem 0.8rem calc(var(--footer-height) + 1rem); }
+    .bookshelf-content { padding: 0.8rem 0       calc(var(--footer-height) + 1rem); }
+    .career-content    { padding: 0      0.8rem calc(var(--footer-height) + 1rem); }
+    .career-footer     { position: sticky; bottom: 0; background: var(--white); }
+
+    .career-content .columns {
+        display: grid; grid-template-columns: repeat(12, 1fr);
+        gap: 0.5rem; padding: 0.8rem 0;
+    }
+    .career-content .columns:last-child { padding-bottom: 0; }
+    .career-content .columns .col,
+    .col-career .Index { overflow-wrap: break-word; word-break: normal; }
+
+    /* -------- 4.5 12-column grid --------------------------- */
+    .columns       { display: grid; grid-template-columns: repeat(12, 1fr); width: 100%; }
+    .columns > .col { min-width: 0; overflow-wrap: break-word; }
+    .columns:hover .Index { color: rgba(0, 0, 0, 0.93); }
+
+    .projects-content .columns {
+        display: grid; grid-template-columns: repeat(12, 1fr);
+        gap: 0.5rem; padding: 0.3rem 0; margin-bottom: 0.3rem;
+    }
+    .projects-content .columns > .col:last-child { white-space: nowrap; }
+    .projects-content .columns:hover .Index { color: var(--black-85); }
+
+    .project-block { display: block; text-decoration: none; color: inherit; }
+    .project-block:has(.slideshow-arrow:active) { opacity: 1; }
+
+    /* -------- 4.6 Slideshow -------------------------------- */
+    .slideshow {position: relative; overflow: hidden; cursor: pointer; width: 100%; }
+    .projects-content .slideshow img,
+    .projects-content .slideshow video,
+    .overlay-page    .slideshow img,
+    .overlay-page    .slideshow video { width: 100%; height: 100%; object-fit: cover; }
+
+    .slideshow-slides { display: flex; transition: transform 0.5s ease; height: 100%; }
+    .slideshow-slide  { flex: 0 0 100%; min-width: 0; width: 100%; height: 100%; }
+
+    .slideshow-arrow {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 2.5rem; height: 2.5rem; border-radius: 50%;
+        background: rgba(0, 0, 0, 0.5); color: #fff; border: 0;
+        font-size: calc(1.6rem * var(--text-scale)); line-height: 0.855;
+        cursor: pointer; z-index: 2;
+        opacity: 0; transition: opacity 0.25s ease;
+        display: flex; align-items: center; justify-content: center; padding: 0;
+    }
+    .slideshow:hover .slideshow-arrow { opacity: 1; }
+    .slideshow-arrow:hover { background: rgba(0, 0, 0, 0.7); }
+    .slideshow-arrow-prev { left:  0.8rem; }
+    .slideshow-arrow-next { right: 0.8rem; }
+
+    /* Flipbook variant: instant frame swap, no arrows, no scroll transition */
+    .slideshow-flipbook { cursor: default; }
+    .slideshow-flipbook .slideshow-slides { display: block; transition: none; position: relative; }
+    .slideshow-flipbook .slideshow-slide  { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+    .slideshow-flipbook .slideshow-slide:first-child { position: relative; }
+    .slideshow-flipbook .slideshow-slide.active { opacity: 1; }
+
+    /* -------- 4.7 Galleries -------------------------------- */
+    .gallery-grid           { display: grid; gap: 1rem; }
+    .gallery-grid.cols-1    { grid-template-columns: 1fr; }
+    .gallery-grid.cols-2    { grid-template-columns: 1fr 1fr; }
+    .gallery-grid.cols-3    { grid-template-columns: 1fr 1fr 1fr; }
+    .gallery-grid img,
+    .gallery-grid video     { width: 100%; }
+
+    .gallery-justified      { display: flex; flex-wrap: wrap; }
+    .gallery-justified img,
+    .gallery-justified video { max-width: 100%; }
+
+    .gallery-columnized     { column-gap: 1rem; }
+    .gallery-columnized img,
+    .gallery-columnized video { width: 100%; display: block; margin-bottom: 1rem; }
+
+    /* Two columns whose widths adapt so heights match. Set --ratio on each col. */
+    .gallery-equal-height        { display: flex; gap: 1rem; align-items: stretch; }
+    .gallery-equal-height > .col { flex: var(--ratio, 1); display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+    .gallery-equal-height img,
+    .gallery-equal-height video  { width: 100%; height: auto; display: block; }
+
+    .gallery-caption {
+        font-family: var(--font-writer);
+        font-size: calc(0.95rem * var(--text-scale));
+        line-height: 1.2825;
+        color: var(--black-40);
+        margin-top: 0.5em;
+        font-weight: 500;
+    }
+
+    /* Bookshelf gallery */
+    .bookshelf-content .gallery-justified { display: flex; flex-wrap: wrap; gap: 1rem 0.8rem; }
+    .bookshelf-content .gallery-justified > * { flex: none; width: 100%; }
+    .bookshelf-content .gallery-item       { flex-shrink: 0; }
+    .bookshelf-content .gallery-item.half  { width: calc(50% - 0.4rem); }
+    .bookshelf-content .gallery-item.full  { width: 100%; }
+    .bookshelf-content .gallery-item img,
+    .bookshelf-content .gallery-item video { width: 100%; height: auto; display: block; }
+    .bookshelf-content .gallery-item.framed img,
+    .bookshelf-content .gallery-item.framed video       { border: 4px solid rgba(0,0,0,0.85); padding: 2px; }
+    .bookshelf-content .gallery-item.framed.half img,
+    .bookshelf-content .gallery-item.framed.half video  { border-width: 3px; padding: 0; }
+    .bookshelf-content .gallery-item.frame-light img,
+    .bookshelf-content .gallery-item.frame-light video  { border-color: #d9d9d9; }
+    .bookshelf-content .gallery-item .gallery-caption,
+    .bookshelf-content .gallery-item figcaption {
+        font-family: var(--font-writer);
+        font-size: calc(1.14rem * var(--text-scale));
+        line-height: 1.2825;
+        color: var(--black-40);
+        font-weight: 500;
+        margin-top: 0.3em;
+        display: block;
+    }
+
+    /* -------- 4.8 Site footer (green) ---------------------- */
+    .site-footer {
+        position: fixed; bottom: 0; left: 0; width: 100%;
+        background-color: var(--green);
+        z-index: 2500; padding: 1.1rem 1rem;
+    }
+    .site-footer .footer-inner {
+        display: flex; justify-content: space-between;
+        align-items: baseline; width: 100%;
+    }
+    .footer-inner > .col:first-child  { white-space: nowrap; flex-shrink: 0; }
+    .footer-inner > .col:nth-child(2) { flex-grow: 1; }
+    .footer-inner > .col:last-child   { text-align: right; white-space: nowrap; flex-shrink: 0; }
+
+    .footer-text,
+    .footer-link {
+        font-family: var(--font-grotesk);
+        font-size: calc(1.44rem * var(--text-scale));
+        font-weight: 400;
+        color: #fff;
+        line-height: 0.855;
+        white-space: nowrap;
+    }
+    .footer-link           { color: #fff !important; }
+    .footer-link:hover     { text-decoration: line-through; }
+    .footer-spacer         { flex: 1; }
+
+    /* -------- 4.9 Overlay system --------------------------- */
+    .overlay-backdrop {
+        position: fixed; inset: 0; z-index: 2000;
+        overflow-y: auto; overflow-x: hidden;
+        pointer-events: none; opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    .overlay-backdrop.active { pointer-events: auto; opacity: 1; }
+
+    .overlay-backdrop.project-overlay {
+        opacity: 1;
+        transform: translateY(100%);
+        transition: transform 0.5s ease;
+        pointer-events: none;
+    }
+    .overlay-backdrop.project-overlay.active                  { transform: translateY(0); }
+    .overlay-backdrop.project-overlay.active .overlay-page    { pointer-events: auto; }
+
+    .overlay-page {
+        width: 68%;
+        background: var(--white);
+        position: relative;
+        padding: 0 1rem calc(var(--footer-height) + 1rem) 0.9rem;
+        border-right: 0.5pt solid #000;
+    }
+    .overlay-page .page-layout { max-width: 100%; }
+    .overlay-page .columns      { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+    .overlay-page .columns[style*="gap: 1"] { gap: 1rem; }
+    .overlay-content-inner > .columns:nth-last-child(2) {
+        margin-bottom: 0; padding-bottom: 0; align-items: end;
+    }
+    .overlay-content-inner > hr:last-child { margin: 3.2px 0; }
+
+    .nav-fixed {
+        position: sticky; top: 0; left: 0; width: 100%;
+        background: #fff; z-index: 9999;
+        padding-top: 1rem; padding-bottom: 0.5rem;
+    }
+
+    /* Bookshelf info overlay (anchored to bookshelf column) */
+    #overlay-bookshelf-info { left: 40%; right: auto; width: 28%; }
+    #overlay-bookshelf-info .overlay-page {
+        width: 100%;
+        padding: 0; min-height: 100%;
+        border-left:  0.5pt solid #000;
+        border-right: 0.5pt solid #000;
+        background: rgba(255, 255, 255, 0.9);
+    }
+    #overlay-bookshelf-info .section-header-bookshelf { padding: 1rem 0.8rem 0.5rem; }
+    #overlay-bookshelf-info .section-header-bookshelf::after { display: none; }
+    .bookshelf-overlay-content { padding: 0.8rem 0.8rem calc(var(--footer-height) + 1rem); }
+
+    /* -------- 4.10 Footer overlay (Contacts) --------------- */
+    .footer-overlay {
+        position: fixed; inset: 0;
+        background-color: var(--green);
+        z-index: 2400;
+        padding: 1.2rem 1rem calc(var(--footer-height) + 1rem);
+        transform: translateY(100%);
+        transition: transform 0.5s ease;
+        overflow-y: auto;
+    }
+    .footer-overlay.active { transform: translateY(0); }
+    .footer-overlay-inner  { display: flex; gap: 1rem; align-items: flex-start; }
+    .footer-carousel {
+        position: relative; overflow: hidden; flex-shrink: 0;
+        height: min(320px, 40vh); aspect-ratio: 3 / 4;
+    }
+    .footer-carousel img {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+    }
+    .footer-carousel img.active { opacity: 1; }
+    .footer-info {
+        flex: 1; height: min(320px, 40vh);
+        display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .footer-close { flex-shrink: 0; }
+
+    .footer {
+        font-family: var(--font-grotesk);
+        font-size: calc(1.44rem * var(--text-scale));
+        font-weight: 400;
+        color: #fff;
+        line-height: 0.855;
+        display: inline;
+        white-space: nowrap;
+    }
+    .footer a:hover,
+    a.footer:hover {
+        text-decoration: line-through;
+        text-decoration-color: #fff;
+    }
+
+    /* -------- 4.11 Projects index overlay ------------------ */
+    .index-overlay {
+        position: fixed; top: 0; left: 0; bottom: 0;
+        width: 40%; z-index: 2000;
+        background: var(--white); padding: 0;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.4s ease; overflow-y: auto;
+    }
+    .index-overlay.active { opacity: 1; pointer-events: auto; }
+    .index-overlay-content { padding: 0.5rem 0.8rem calc(var(--footer-height) + 1rem); }
+    .index-overlay .columns {
+        display: grid; grid-template-columns: repeat(12, 1fr);
+        gap: 0.5rem; padding: 0.1rem 0;
+    }
+    .index-overlay .columns.index-legend { padding-bottom: calc(1.2vw + 0.2rem); }
+    .index-overlay-content > hr { margin: 0; }
+
+    /* -------- 4.12 Icons ----------------------------------- */
+    .icon-svg {
+        display: inline-block; vertical-align: middle;
+        height: 1em; width: auto;
+    }
+    .Index .icon-svg { opacity: 0.49; transition: opacity 0.2s; }
+    .Index:hover .icon-svg,
+    a:hover .icon-svg { opacity: 0.85; }
+
+    /* -------- 4.13 Project standalone pages ---------------- */
+    .project-standalone        { min-height: 100vh; padding: 0 1rem 0 0.9rem; }
+    .project-standalone-inner  { max-width: 40%; }
+
+    .row-nav  > .col:nth-child(1) { grid-column: span 2; }
+    .row-nav  > .col:nth-child(2) { grid-column: span 8; }
+    .row-nav  > .col:nth-child(3) { grid-column: span 2; }
+    .row-info > .col:nth-child(1) { grid-column: span 2; }
+    .row-info > .col:nth-child(2) { grid-column: span 2; }
+    .row-info > .col:nth-child(3) { grid-column: span 1; }
+    .row-info > .col:nth-child(4) { grid-column: span 1; }
+    .row-info > .col:nth-child(5) { grid-column: span 6; }
+
+    .row-height-match     { display: flex; gap: 1rem; align-items: flex-start; }
+    .row-height-match > * { min-width: 0; }
+    .row-height-match img,
+    .row-height-match video { width: 100%; height: auto; display: block; }
+
+    /* -------- 4.14 Flatplan lightbox ----------------------- */
+    .flatplan-lb {
+        display: none; position: fixed; inset: 0; z-index: 10000;
+        background: rgba(255, 255, 255, 0.97);
+        align-items: center; justify-content: center;
+    }
+    .flatplan-lb.active { display: flex; }
+    .flatplan-lb-img    { max-width: 90vw; max-height: 90vh; object-fit: contain; display: block; }
+    .flatplan-lb-close {
+        position: fixed; top: 1rem; right: 1.2rem;
+        background: none; border: 0;
+        font-size: calc(1.2rem * var(--text-scale));
+        font-weight: 600;
+        font-family: var(--font-writer);
+        color: var(--green-header);
+        cursor: pointer; line-height: 1; padding: 0.4rem;
+    }
+    .flatplan-lb-close:active { opacity: 0.7; }
+    .flatplan-grid img        { cursor: pointer; }
+
+    /* -------- 4.15 Mobile single page ---------------------- */
+    .mobile-page { display: none; }
+    .mobile-page-top,
+    .mobile-page-bottom {
+        font-family: var(--font-grotesk);
+        font-size: calc(1.7rem * var(--text-scale));
+        line-height: calc(1.9rem * var(--text-scale));
+        font-weight: 400;
+        color: #fff;
+    }
+    .mobile-page-top a       { color: #fff; }
+    .mobile-page-top a:hover { text-decoration: line-through; }
+    .mobile-block            { margin-bottom: 1.8rem; }
+}
+
+/* ============================================================
+   5. RESPONSIVE
+   ============================================================ */
+
+/* Tablet / small laptop: hide bookshelf column */
+@media (max-width: 1200px) {
+    .col-bookshelf      { display: none; }
+    .col-projects       { width: 56%; }
+    .col-career         { width: 44%; border-left: 0.5pt solid #000; }
+    .overlay-page       { width: 100%; border-right: none; }
+    .index-overlay      { width: 56%; }
+    #overlay-bookshelf-info { display: none; }
+}
+
+/* Mobile single page */
+@media (max-width: 768px) {
+    .mobile-page {
+        display: flex;
+        min-height: 100vh;
+        background-color: var(--green);
+    }
+    .mobile-page-content {
+        display: flex; flex-direction: column; justify-content: space-between;
+        min-height: 100vh; width: 100%; padding: 1.2rem;
+    }
+    .site-wrapper,
+    .site-footer,
+    .footer-overlay,
+    .index-overlay,
+    .overlay-backdrop { display: none !important; }
+}
