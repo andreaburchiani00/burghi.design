@@ -32,7 +32,7 @@ function initOverlays() {
             e.preventDefault();
             const activeOverlays = document.querySelectorAll('.overlay-backdrop.active, .footer-overlay.active, .index-overlay.active');
             if (activeOverlays.length === 0) {
-                window.location.href = '/';
+                window.location.href = '../public/index.html';
             } else {
                 closeAllOverlays();
             }
@@ -90,7 +90,7 @@ async function openOverlay(id) {
 
 async function loadProjectContent(id, overlay) {
     const projectName = id.replace('overlay-', '');
-    const url = `projects/${projectName}.html`;
+    const url = `../projects/${projectName}.html`;
 
     try {
         const res = await fetch(url);
@@ -101,11 +101,8 @@ async function loadProjectContent(id, overlay) {
         const source = doc.querySelector('.project-standalone-inner');
         if (!source) return;
 
-        // Fix paths: projects/<name>.html uses ../assets/ → assets/
-        const stripParent = (val) => val && val.startsWith('../') ? val.slice(3) : val;
-        source.querySelectorAll('[src]').forEach(el => el.setAttribute('src', stripParent(el.getAttribute('src'))));
-        source.querySelectorAll('source[src]').forEach(el => el.setAttribute('src', stripParent(el.getAttribute('src'))));
-        source.querySelectorAll('[href]').forEach(el => el.setAttribute('href', stripParent(el.getAttribute('href'))));
+        // Project standalone pages use ../assets/ — when injected into /public/index.html,
+        // those resolve correctly to /assets/ without modification.
 
         // Inject into overlay
         const container = overlay.querySelector('.overlay-content-inner');

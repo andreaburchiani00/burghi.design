@@ -1,2 +1,0 @@
-# burghi.design
-portfolio
