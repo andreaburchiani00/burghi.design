@@ -32,7 +32,7 @@ function initOverlays() {
             e.preventDefault();
             const activeOverlays = document.querySelectorAll('.overlay-backdrop.active, .footer-overlay.active, .index-overlay.active');
             if (activeOverlays.length === 0) {
-                window.location.href = '../public/index.html';
+                window.location.href = '/';
             } else {
                 closeAllOverlays();
             }
@@ -101,7 +101,7 @@ async function loadProjectContent(id, overlay) {
         const source = doc.querySelector('.project-standalone-inner');
         if (!source) return;
 
-        // Project standalone pages use ../assets/ — when injected into /public/index.html,
+        // Project standalone pages use ../assets/ — when injected into /index.html,
         // those resolve correctly to /assets/ without modification.
 
         // Inject into overlay

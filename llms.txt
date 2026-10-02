@@ -15,10 +15,7 @@
 
 ## Site map
 
-- [Home / Portfolio](https://burghi.design/): Main landing with project grid, career, bookshelf and contacts
-- [Projects index](https://burghi.design/projects-index.html): Compact list of all projects by name, field and year
-- [Bookshelf](https://burghi.design/bookshelf-+.html): Curated list of references and inspirations
-- [Contacts](https://burghi.design/footer-big.html): Personal info and contact links
+- [Home / Portfolio](https://burghi.design/): Main landing with project grid, career, bookshelf and contacts (projects index, bookshelf info and contacts are integrated overlays on this page)
 
 ## Projects
 
