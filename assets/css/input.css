@@ -407,10 +407,18 @@ blockquote { padding: 0 0 0 2em; }
     /* -------- 4.14 Per-project themes ----------------------- */
     .project-standalone.theme-red { background-color: #DA463B; }
     .overlay-backdrop.theme-red .overlay-page { background-color: #DA463B; }
+    .overlay-backdrop.theme-red .nav-fixed { background: #DA463B; }
 
     /* Full-page red while the TBD5 overlay is open; greens turn white.
        (Footer texts turn red — white-on-white would be invisible.) */
     body.page-red { background-color: #DA463B; }
+    body.page-red .site-wrapper,
+    body.page-red .col-projects,
+    body.page-red .col-bookshelf,
+    body.page-red .col-career,
+    body.page-red .projects-content,
+    body.page-red .bookshelf-content,
+    body.page-red .career-content { background-color: #DA463B; }
     body.page-red .section-header,
     body.page-red .career-footer { background: #DA463B; }
     body.page-red .headers,
