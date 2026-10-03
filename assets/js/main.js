@@ -80,6 +80,9 @@ async function openOverlay(id) {
     }
 
     closeAllOverlays();
+    // Per-project theme (e.g. red background): only the opened overlay keeps it
+    document.querySelectorAll('.overlay-backdrop.theme-red').forEach(o => o.classList.remove('theme-red'));
+    if (overlay.dataset.theme === 'red') overlay.classList.add('theme-red');
     overlay.classList.add('active');
     document.body.classList.add('no-scroll');
     overlay.scrollTop = 0;

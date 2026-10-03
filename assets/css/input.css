@@ -404,6 +404,10 @@ blockquote { padding: 0 0 0 2em; }
     .project-standalone        { min-height: 100vh; padding: 0 1rem 0 0.9rem; }
     .project-standalone-inner  { max-width: 40%; }
 
+    /* -------- 4.14 Per-project themes ----------------------- */
+    .project-standalone.theme-red { background-color: #DA463B; }
+    .overlay-backdrop.theme-red .overlay-page { background-color: #DA463B; }
+
     .row-nav  > .col:nth-child(1) { grid-column: span 2; }
     .row-nav  > .col:nth-child(2) { grid-column: span 8; }
     .row-nav  > .col:nth-child(3) { grid-column: span 2; }

@@ -844,6 +844,16 @@
   max-width: 40%;
 }
 
+/* -------- 4.14 Per-project themes ----------------------- */
+
+.project-standalone.theme-red {
+  background-color: #DA463B;
+}
+
+.overlay-backdrop.theme-red .overlay-page {
+  background-color: #DA463B;
+}
+
 .row-nav  > .col:nth-child(1) {
   grid-column: span 2;
 }
