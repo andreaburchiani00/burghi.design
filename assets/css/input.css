@@ -405,23 +405,23 @@ blockquote { padding: 0 0 0 2em; }
     .project-standalone-inner  { max-width: 40%; }
 
     /* -------- 4.14 Per-project themes ----------------------- */
-    .project-standalone.theme-red { background-color: #C2382D; }
-    .overlay-backdrop.theme-red .overlay-page { background-color: #C2382D; }
-    .overlay-backdrop.theme-red .nav-fixed { background: #C2382D; }
+    .project-standalone.theme-red { background-color: #000; }
+    .overlay-backdrop.theme-red .overlay-page { background-color: #000; }
+    .overlay-backdrop.theme-red .nav-fixed { background: #000; }
 
     /* Full-page red while the TBD5 overlay is open; ALL texts turn white,
        keeping the dimmed -> full opacity play on hover.
        (Footer bar + contacts panel stay red too — white-on-white would be invisible.) */
-    body.page-red { background-color: #C2382D; }
+    body.page-red { background-color: #000; }
     body.page-red .site-wrapper,
     body.page-red .col-projects,
     body.page-red .col-bookshelf,
     body.page-red .col-career,
     body.page-red .projects-content,
     body.page-red .bookshelf-content,
-    body.page-red .career-content { background-color: #C2382D; }
+    body.page-red .career-content { background-color: #000; }
     body.page-red .section-header,
-    body.page-red .career-footer { background: #C2382D; }
+    body.page-red .career-footer { background: #000; }
     body.page-red .headers,
     body.page-red .headers a,
     .project-standalone.theme-red .headers,
@@ -456,13 +456,13 @@ blockquote { padding: 0 0 0 2em; }
     .project-standalone.theme-red .legenda a:hover { color: #fff; }
     body.page-red .site-footer { background-color: #fff; }
     body.page-red .footer-text,
-    body.page-red .footer-link { color: #C2382D !important; }
+    body.page-red .footer-link { color: #000 !important; }
     body.page-red .footer-overlay { background-color: #fff; }
-    body.page-red .footer-overlay .footer { color: #C2382D; }
+    body.page-red .footer-overlay .footer { color: #000; }
     body.page-red .footer a:hover,
-    body.page-red a.footer:hover { text-decoration-color: #C2382D; }
+    body.page-red a.footer:hover { text-decoration-color: #000; }
     body.page-red .flatplan-lb-close { color: #fff; }
-    body.page-red .mobile-page { background-color: #C2382D; }
+    body.page-red .mobile-page { background-color: #000; }
     body.page-red .mobile-page,
     body.page-red .mobile-page a { color: #fff; }
 

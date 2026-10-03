@@ -847,15 +847,15 @@
 /* -------- 4.14 Per-project themes ----------------------- */
 
 .project-standalone.theme-red {
-  background-color: #C2382D;
+  background-color: #000;
 }
 
 .overlay-backdrop.theme-red .overlay-page {
-  background-color: #C2382D;
+  background-color: #000;
 }
 
 .overlay-backdrop.theme-red .nav-fixed {
-  background: #C2382D;
+  background: #000;
 }
 
 /* Full-page red while the TBD5 overlay is open; ALL texts turn white,
@@ -869,12 +869,12 @@ body.page-red .site-wrapper,
     body.page-red .projects-content,
     body.page-red .bookshelf-content,
     body.page-red .career-content {
-  background-color: #C2382D;
+  background-color: #000;
 }
 
 body.page-red .section-header,
     body.page-red .career-footer {
-  background: #C2382D;
+  background: #000;
 }
 
 body.page-red .headers,
@@ -933,7 +933,7 @@ body.page-red .site-footer {
 
 body.page-red .footer-text,
     body.page-red .footer-link {
-  color: #C2382D !important;
+  color: #000 !important;
 }
 
 body.page-red .footer-overlay {
@@ -941,16 +941,16 @@ body.page-red .footer-overlay {
 }
 
 body.page-red .footer-overlay .footer {
-  color: #C2382D;
+  color: #000;
 }
 
 body.page-red .footer a:hover,
     body.page-red a.footer:hover {
-  text-decoration-color: #C2382D;
+  text-decoration-color: #000;
 }
 
 body.page-red .mobile-page {
-  background-color: #C2382D;
+  background-color: #000;
 }
 
 body.page-red .mobile-page,
