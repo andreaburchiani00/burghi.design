@@ -30,6 +30,18 @@ function initOverlays() {
         const btn = e.target.closest('[data-close-overlay]');
         if (btn) {
             e.preventDefault();
+            // Closing footer/index above a project overlay: close only that layer,
+            // so the project underneath stays open instead of dropping to home.
+            const layer = btn.closest('.footer-overlay, .index-overlay');
+            if (layer) {
+                layer.classList.remove('active');
+                const anyActive = document.querySelector('.overlay-backdrop.active, .footer-overlay.active, .index-overlay.active');
+                if (!anyActive) document.body.classList.remove('no-scroll');
+                if (!document.querySelector('.overlay-backdrop.theme-red.active')) {
+                    document.body.classList.remove('page-red');
+                }
+                return;
+            }
             const activeOverlays = document.querySelectorAll('.overlay-backdrop.active, .footer-overlay.active, .index-overlay.active');
             if (activeOverlays.length === 0) {
                 window.location.href = '/';
@@ -52,7 +64,8 @@ function initOverlays() {
             const overlay = document.getElementById('footer-overlay');
             if (overlay) {
                 overlay.classList.toggle('active');
-                document.body.classList.toggle('no-scroll');
+                const anyActive = document.querySelector('.overlay-backdrop.active, .footer-overlay.active, .index-overlay.active');
+                document.body.classList.toggle('no-scroll', !!anyActive);
             }
         });
     });
