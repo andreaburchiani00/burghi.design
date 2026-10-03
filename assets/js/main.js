@@ -82,7 +82,11 @@ async function openOverlay(id) {
     closeAllOverlays();
     // Per-project theme (e.g. red background): only the opened overlay keeps it
     document.querySelectorAll('.overlay-backdrop.theme-red').forEach(o => o.classList.remove('theme-red'));
-    if (overlay.dataset.theme === 'red') overlay.classList.add('theme-red');
+    document.body.classList.remove('page-red');
+    if (overlay.dataset.theme === 'red') {
+        overlay.classList.add('theme-red');
+        document.body.classList.add('page-red');
+    }
     overlay.classList.add('active');
     document.body.classList.add('no-scroll');
     overlay.scrollTop = 0;
@@ -133,6 +137,7 @@ function closeAllOverlays() {
         o.classList.remove('active');
     });
     document.body.classList.remove('no-scroll');
+    document.body.classList.remove('page-red');
     document.querySelectorAll('.overlay-backdrop video').forEach(v => v.pause());
 }
 
