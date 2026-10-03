@@ -454,13 +454,13 @@ blockquote { padding: 0 0 0 2em; }
     body.page-red .legenda a:hover,
     .project-standalone.theme-red .Index a:hover,
     .project-standalone.theme-red .legenda a:hover { color: #fff; }
-    body.page-red .site-footer { background-color: #DA463B; }
+    body.page-red .site-footer { background-color: #fff; }
     body.page-red .footer-text,
-    body.page-red .footer-link { color: #fff !important; }
-    body.page-red .footer-overlay { background-color: #DA463B; }
-    body.page-red .footer-overlay .footer { color: #fff; }
+    body.page-red .footer-link { color: #DA463B !important; }
+    body.page-red .footer-overlay { background-color: #fff; }
+    body.page-red .footer-overlay .footer { color: #DA463B; }
     body.page-red .footer a:hover,
-    body.page-red a.footer:hover { text-decoration-color: #fff; }
+    body.page-red a.footer:hover { text-decoration-color: #DA463B; }
     body.page-red .flatplan-lb-close { color: #fff; }
     body.page-red .mobile-page { background-color: #DA463B; }
     body.page-red .mobile-page,
