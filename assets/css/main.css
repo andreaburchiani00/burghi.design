@@ -927,27 +927,7 @@ body.page-red .Index a:hover,
   color: #fff;
 }
 
-body.page-red .site-footer {
-  background-color: #fff;
-}
-
-body.page-red .footer-text,
-    body.page-red .footer-link {
-  color: #000 !important;
-}
-
-body.page-red .footer-overlay {
-  background-color: #fff;
-}
-
-body.page-red .footer-overlay .footer {
-  color: #000;
-}
-
-body.page-red .footer a:hover,
-    body.page-red a.footer:hover {
-  text-decoration-color: #000;
-}
+/* Footer + contacts panel keep the classic green (original rules apply). */
 
 body.page-red .mobile-page {
   background-color: #000;
