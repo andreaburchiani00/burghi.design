@@ -466,6 +466,8 @@ blockquote { padding: 0 0 0 2em; }
     body.page-red .mobile-page { background-color: #000; }
     body.page-red .mobile-page,
     body.page-red .mobile-page a { color: #fff; }
+    body.page-red .Index .icon-svg,
+    .project-standalone.theme-red .Index .icon-svg { filter: brightness(0) invert(1); }
 
     .row-nav  > .col:nth-child(1) { grid-column: span 2; }
     .row-nav  > .col:nth-child(2) { grid-column: span 8; }
