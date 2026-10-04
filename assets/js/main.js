@@ -236,6 +236,28 @@ function initSlideshows(root) {
             interval = setInterval(next, autoplayDelay * 1000);
         }
 
+        // Scrub mode (flipbooks with data-scrub): mouse X position selects the frame.
+        // Pauses autoplay while hovering; resumes on leave. Other slideshows untouched.
+        if (isFlipbook && slideshow.dataset.scrub !== undefined) {
+            slideshow.addEventListener('mouseenter', () => {
+                if (interval) {
+                    clearInterval(interval);
+                    interval = null;
+                }
+            });
+            slideshow.addEventListener('mousemove', (ev) => {
+                const r = slideshow.getBoundingClientRect();
+                if (r.width <= 0) return;
+                const ratio = Math.min(Math.max((ev.clientX - r.left) / r.width, 0), 1);
+                goTo(Math.floor(ratio * wrappedSlides.length));
+            });
+            slideshow.addEventListener('mouseleave', () => {
+                if (autoplayDelay > 0) {
+                    interval = setInterval(next, autoplayDelay * 1000);
+                }
+            });
+        }
+
         if (isFlipbook) return;
 
         // Navigation arrows
