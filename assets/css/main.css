@@ -1147,6 +1147,10 @@ body.page-red .Index .icon-svg,
   aspect-ratio: 3/2;
 }
 
+.aspect-\[3\/4\] {
+  aspect-ratio: 3/4;
+}
+
 .aspect-video {
   aspect-ratio: 16 / 9;
 }
