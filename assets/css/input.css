@@ -405,70 +405,75 @@ blockquote { padding: 0 0 0 2em; }
     .project-standalone-inner  { max-width: 40%; }
 
     /* -------- 4.14 Per-project themes ----------------------- */
-    .project-standalone.theme-red { background-color: #000; }
-    .overlay-backdrop.theme-red .overlay-page { background-color: #000; }
-    .overlay-backdrop.theme-red .nav-fixed { background: #000; }
+/* One variable per theme: tweaking the shade = 1 edit.
+   New theme = new data-theme value + one --theme-bg scope + (optional) text rules. */
+body.theme-black,
+.project-standalone.theme-black,
+.overlay-backdrop.theme-black { --theme-bg: #000; }
+    .project-standalone.theme-black { background-color: var(--theme-bg); }
+    .overlay-backdrop.theme-black .overlay-page { background-color: var(--theme-bg); }
+    .overlay-backdrop.theme-black .nav-fixed { background: var(--theme-bg); }
 
     /* Full-page red while the TBD5 overlay is open; ALL texts turn white,
        keeping the dimmed -> full opacity play on hover.
        (Footer bar + contacts panel stay red too — white-on-white would be invisible.) */
-    body.page-red { background-color: #000; }
-    body.page-red .site-wrapper,
-    body.page-red .col-projects,
-    body.page-red .col-bookshelf,
-    body.page-red .col-career,
-    body.page-red .projects-content,
-    body.page-red .bookshelf-content,
-    body.page-red .career-content { background-color: #000; }
-    body.page-red .section-header,
-    body.page-red .career-footer { background: #000; }
-    body.page-red .headers,
-    body.page-red .headers a,
-    .project-standalone.theme-red .headers,
-    .project-standalone.theme-red .headers a { color: #fff; }
-    body.page-red .corpo,
-    body.page-red .corpo a,
-    body.page-red .legenda,
-    body.page-red .legenda a,
-    body.page-red .gallery-caption,
-    body.page-red .caption,
-    body.page-red .caption a,
-    .project-standalone.theme-red .corpo,
-    .project-standalone.theme-red .corpo a,
-    .project-standalone.theme-red .legenda,
-    .project-standalone.theme-red .legenda a,
-    .project-standalone.theme-red .gallery-caption,
-    .project-standalone.theme-red .caption,
-    .project-standalone.theme-red .caption a { color: rgba(255, 255, 255, 0.9); }
-    body.page-red .Index,
-    body.page-red .Index a,
-    .project-standalone.theme-red .Index,
-    .project-standalone.theme-red .Index a { color: rgba(255, 255, 255, 0.55); }
-    body.page-red .columns:hover .Index,
-    body.page-red .columns:hover .Index a,
-    .project-standalone.theme-red .columns:hover .Index,
-    .project-standalone.theme-red .columns:hover .Index a { color: rgba(255, 255, 255, 0.95); }
-    body.page-red .projects-content .columns:hover .Index,
-    body.page-red .projects-content .columns:hover .Index a { color: rgba(255, 255, 255, 0.92); }
-    body.page-red .Index a:hover,
-    body.page-red .legenda a:hover,
-    .project-standalone.theme-red .Index a:hover,
-    .project-standalone.theme-red .legenda a:hover { color: #fff; }
+    body.theme-black { background-color: var(--theme-bg); }
+    body.theme-black .site-wrapper,
+    body.theme-black .col-projects,
+    body.theme-black .col-bookshelf,
+    body.theme-black .col-career,
+    body.theme-black .projects-content,
+    body.theme-black .bookshelf-content,
+    body.theme-black .career-content { background-color: var(--theme-bg); }
+    body.theme-black .section-header,
+    body.theme-black .career-footer { background: var(--theme-bg); }
+    body.theme-black .headers,
+    body.theme-black .headers a,
+    .project-standalone.theme-black .headers,
+    .project-standalone.theme-black .headers a { color: #fff; }
+    body.theme-black .corpo,
+    body.theme-black .corpo a,
+    body.theme-black .legenda,
+    body.theme-black .legenda a,
+    body.theme-black .gallery-caption,
+    body.theme-black .caption,
+    body.theme-black .caption a,
+    .project-standalone.theme-black .corpo,
+    .project-standalone.theme-black .corpo a,
+    .project-standalone.theme-black .legenda,
+    .project-standalone.theme-black .legenda a,
+    .project-standalone.theme-black .gallery-caption,
+    .project-standalone.theme-black .caption,
+    .project-standalone.theme-black .caption a { color: rgba(255, 255, 255, 0.9); }
+    body.theme-black .Index,
+    body.theme-black .Index a,
+    .project-standalone.theme-black .Index,
+    .project-standalone.theme-black .Index a { color: rgba(255, 255, 255, 0.55); }
+    body.theme-black .columns:hover .Index,
+    body.theme-black .columns:hover .Index a,
+    .project-standalone.theme-black .columns:hover .Index,
+    .project-standalone.theme-black .columns:hover .Index a { color: rgba(255, 255, 255, 0.95); }
+    body.theme-black .projects-content .columns:hover .Index,
+    body.theme-black .projects-content .columns:hover .Index a { color: rgba(255, 255, 255, 0.92); }
+    body.theme-black .Index a:hover,
+    body.theme-black .legenda a:hover,
+    .project-standalone.theme-black .Index a:hover,
+    .project-standalone.theme-black .legenda a:hover { color: #fff; }
     /* Footer + contacts panel keep the classic green (original rules apply). */
-    body.page-red .site-footer { background-color: #fff; }
-    body.page-red .footer-text,
-    body.page-red .footer-link { color: #000 !important; }
-    body.page-red .footer-overlay { background-color: #000; }
-    body.page-red .footer-overlay .footer { color: #fff; }
-    body.page-red .footer a:hover,
-    body.page-red a.footer:hover { text-decoration-color: #fff; }
-    body.page-red .footer-overlay .footer-close .icon-svg { filter: brightness(0) invert(1); }
-    body.page-red .flatplan-lb-close { color: #fff; }
-    body.page-red .mobile-page { background-color: #000; }
-    body.page-red .mobile-page,
-    body.page-red .mobile-page a { color: #fff; }
-    body.page-red .Index .icon-svg,
-    .project-standalone.theme-red .Index .icon-svg { filter: brightness(0) invert(1); }
+    body.theme-black .site-footer { background-color: #fff; }
+    body.theme-black .footer-text,
+    body.theme-black .footer-link { color: var(--theme-bg) !important; }
+    body.theme-black .footer-overlay { background-color: var(--theme-bg); }
+    body.theme-black .footer-overlay .footer { color: #fff; }
+    body.theme-black .footer a:hover,
+    body.theme-black a.footer:hover { text-decoration-color: #fff; }
+    body.theme-black .footer-overlay .footer-close .icon-svg { filter: brightness(0) invert(1); }
+    body.theme-black .flatplan-lb-close { color: #fff; }
+    body.theme-black .mobile-page { background-color: var(--theme-bg); }
+    body.theme-black .mobile-page,
+    body.theme-black .mobile-page a { color: #fff; }
+    body.theme-black .Index .icon-svg,
+    .project-standalone.theme-black .Index .icon-svg { filter: brightness(0) invert(1); }
 
     .row-nav  > .col:nth-child(1) { grid-column: span 2; }
     .row-nav  > .col:nth-child(2) { grid-column: span 8; }

@@ -37,8 +37,8 @@ function initOverlays() {
                 layer.classList.remove('active');
                 const anyActive = document.querySelector('.overlay-backdrop.active, .footer-overlay.active, .index-overlay.active');
                 if (!anyActive) document.body.classList.remove('no-scroll');
-                if (!document.querySelector('.overlay-backdrop.theme-red.active')) {
-                    document.body.classList.remove('page-red');
+                if (!document.querySelector('.overlay-backdrop.project-overlay.active')) {
+                    clearBodyThemes();
                 }
                 return;
             }
@@ -93,12 +93,16 @@ async function openOverlay(id) {
     }
 
     closeAllOverlays();
-    // Per-project theme (e.g. red background): only the opened overlay keeps it
-    document.querySelectorAll('.overlay-backdrop.theme-red').forEach(o => o.classList.remove('theme-red'));
-    document.body.classList.remove('page-red');
-    if (overlay.dataset.theme === 'red') {
-        overlay.classList.add('theme-red');
-        document.body.classList.add('page-red');
+    // Per-project theme (e.g. data-theme="black"): only the opened overlay keeps it.
+    // Generic: any data-theme value works with a matching .theme-<name> CSS scope.
+    document.querySelectorAll('.overlay-backdrop[data-theme]').forEach(o => {
+        if (o.dataset.theme) o.classList.remove('theme-' + o.dataset.theme);
+    });
+    clearBodyThemes();
+    const theme = overlay.dataset.theme;
+    if (theme) {
+        overlay.classList.add('theme-' + theme);
+        document.body.classList.add('theme-' + theme);
     }
     overlay.classList.add('active');
     document.body.classList.add('no-scroll');
@@ -145,12 +149,17 @@ async function loadProjectContent(id, overlay) {
     }
 }
 
+/* Remove any theme-* class from <body> (project themes are namespaced that way). */
+function clearBodyThemes() {
+    [...document.body.classList].filter(c => c.startsWith('theme-')).forEach(c => document.body.classList.remove(c));
+}
+
 function closeAllOverlays() {
     document.querySelectorAll('.overlay-backdrop.active, .footer-overlay.active, .index-overlay.active').forEach(o => {
         o.classList.remove('active');
     });
     document.body.classList.remove('no-scroll');
-    document.body.classList.remove('page-red');
+    clearBodyThemes();
     document.querySelectorAll('.overlay-backdrop video').forEach(v => v.pause());
 }
 
