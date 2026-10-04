@@ -412,6 +412,24 @@
   opacity: 1;
 }
 
+/* Fixed-frame variant: same height as the flatplan 17/10 crop, images cover.
+       First slide absolute too so the aspect-ratio drives the height. */
+
+.slideshow-flipbook.frame-1710 {
+  aspect-ratio: 17 / 10;
+}
+
+.slideshow-flipbook.frame-1710 .slideshow-slide:first-child {
+  position: absolute;
+}
+
+.slideshow-flipbook.frame-1710 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 /* -------- 4.7 Galleries -------------------------------- */
 
 .gallery-grid           {

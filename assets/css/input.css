@@ -196,6 +196,12 @@ blockquote { padding: 0 0 0 2em; }
     .slideshow-flipbook .slideshow-slide:first-child { position: relative; }
     .slideshow-flipbook .slideshow-slide.active { opacity: 1; }
 
+    /* Fixed-frame variant: same height as the flatplan 17/10 crop, images cover.
+       First slide absolute too so the aspect-ratio drives the height. */
+    .slideshow-flipbook.frame-1710 { aspect-ratio: 17 / 10; }
+    .slideshow-flipbook.frame-1710 .slideshow-slide:first-child { position: absolute; }
+    .slideshow-flipbook.frame-1710 img { width: 100%; height: 100%; object-fit: cover; }
+
     /* -------- 4.7 Galleries -------------------------------- */
     .gallery-grid           { display: grid; gap: 1rem; }
     .gallery-grid.cols-1    { grid-template-columns: 1fr; }
