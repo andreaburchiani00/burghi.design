@@ -1139,6 +1139,10 @@ body.page-red .Index .icon-svg,
   aspect-ratio: 16/9;
 }
 
+.aspect-\[17\/10\] {
+  aspect-ratio: 17/10;
+}
+
 .aspect-\[3\/2\] {
   aspect-ratio: 3/2;
 }
@@ -1207,8 +1211,17 @@ body.page-red .Index .icon-svg,
   align-self: flex-start;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .border {
   border-width: 1px;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .pr-10 {
