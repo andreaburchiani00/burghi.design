@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Project Builder — burghi.design (locale)</title>
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <style>
+    /* Builder chrome only — never exported into project pages */
+    :root { --bd-line: #ddd; --bd-bg: #f6f6f4; --bd-ink: #111; --bd-muted: #777; }
+    body.builder { overflow: auto; background: var(--bd-bg); color: var(--bd-ink); }
+    .bd-wrap { max-width: 1500px; margin: 0 auto; padding: 20px 20px 120px; }
+    .bd-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 16px; }
+    .bd-head h1 { font-size: 22px; }
+    .bd-head p { color: var(--bd-muted); font-size: 13px; max-width: 640px; }
+    .bd-grid { display: grid; grid-template-columns: 460px 1fr; gap: 16px; align-items: start; }
+    @media (max-width: 1100px) { .bd-grid { grid-template-columns: 1fr; } }
+    .bd-card { background: #fff; border: 1px solid var(--bd-line); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .bd-card h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+    .bd-card h3 { font-size: 13px; margin: 10px 0 6px; }
+    .bd-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .bd-field { margin-bottom: 8px; }
+    .bd-field label { display: block; font-size: 12px; color: var(--bd-muted); margin-bottom: 3px; }
+    .bd-field input, .bd-field select, .bd-field textarea {
+      width: 100%; font: inherit; font-size: 13px; padding: 7px 8px;
+      border: 1px solid var(--bd-line); border-radius: 6px; background: #fff; color: var(--bd-ink);
+    }
+    .bd-field textarea { min-height: 64px; resize: vertical; }
+    .bd-hint { font-size: 12px; color: var(--bd-muted); }
+    .bd-media { border: 1px dashed var(--bd-line); border-radius: 6px; padding: 8px; margin-bottom: 6px; }
+    .bd-media .bd-row { grid-template-columns: 110px 1fr; }
+    .bd-btn { font: inherit; font-size: 13px; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--bd-line); background: #fff; cursor: pointer; }
+    .bd-btn:hover { border-color: #111; }
+    .bd-btn.primary { background: #111; color: #fff; border-color: #111; }
+    .bd-btn.danger { color: #a00; }
+    .bd-btnrow { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+    .bd-block { border: 1px solid var(--bd-line); border-radius: 8px; padding: 10px; margin-bottom: 8px; background: #fcfcfb; }
+    .bd-blockhead { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .bd-blockhead strong { font-size: 13px; }
+    .bd-blockhead small { color: var(--bd-muted); font-size: 11px; display: block; }
+    .bd-iconbtns { display: flex; gap: 4px; }
+    .bd-iconbtns .bd-btn { padding: 4px 8px; font-size: 12px; }
+    .bd-errors { background: #fff5f5; border: 1px solid #e5b4b4; color: #900; border-radius: 8px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; }
+    .bd-ok { background: #f2fbf4; border: 1px solid #bfe3c8; color: #14532d; border-radius: 8px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; }
+    .bd-export textarea { width: 100%; min-height: 130px; font-family: ui-monospace, monospace; font-size: 11px; padding: 8px; border: 1px solid var(--bd-line); border-radius: 6px; }
+    /* Preview pane reuses site classes for fidelity */
+    .bd-preview { position: sticky; top: 12px; background: #fff; border: 1px solid var(--bd-line); border-radius: 10px; overflow: hidden; }
+    .bd-previewbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--bd-line); font-size: 12px; color: var(--bd-muted); }
+    .bd-previewbody { max-height: 78vh; overflow: auto; }
+    .bd-previewbody .project-standalone-inner { max-width: 100%; }
+    .bd-pv-slideshow { position: relative; }
+    .bd-pv-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.5); color: #fff; border: 0; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; }
+    .bd-pv-prev { left: 8px; } .bd-pv-next { right: 8px; }
+    .bd-pv-count { position: absolute; bottom: 6px; right: 8px; background: rgba(0,0,0,.55); color: #fff; font-size: 11px; padding: 1px 7px; border-radius: 10px; }
+  </style>
+</head>
+<body class="builder">
+<div class="bd-wrap">
+  <div class="bd-head">
+    <div>
+      <h1>New Project Builder <span class="bd-hint">(locale — non pubblicato)</span></h1>
+      <p>Compili la scheda, aggiungi blocchi colonna con struttura bloccata, controlli l'anteprima e scarichi la pagina + gli snippet per <code>index.html</code>. Apri con <code>http://localhost:8000/project-builder/</code>.</p>
+    </div>
+    <div><a class="bd-btn" href="../">← torna al sito</a></div>
+  </div>
+
+  <div id="bd-status"></div>
+
+  <div class="bd-grid">
+    <div>
+      <div class="bd-card">
+        <h2>1 · Scheda progetto</h2>
+        <div class="bd-row">
+          <div class="bd-field"><label>Slug (cartella/file, es. <code>lagne-zine</code>)</label><input id="f-slug" placeholder="nome-progetto" /></div>
+          <div class="bd-field"><label>Anno</label><input id="f-year" placeholder="2026" inputmode="numeric" /></div>
+        </div>
+        <div class="bd-field"><label>Titolo progetto</label><input id="f-title" placeholder="Titolo" /></div>
+        <div class="bd-row">
+          <div class="bd-field"><label>Campo (Field)</label>
+            <select id="f-field">
+              <option>Editorial</option><option>UX/UI</option><option>Brand</option>
+              <option>Service, UX/UI</option><option>Exhibition</option><option>Other</option>
+            </select>
+          </div>
+          <div class="bd-field"><label>Tema overlay</label>
+            <select id="f-theme"><option value="">default (chiaro)</option><option value="black">black</option></select>
+          </div>
+        </div>
+        <div class="bd-field"><label>Descrizione breve (card in homepage, 1–2 righe)</label><textarea id="f-short"></textarea></div>
+        <div class="bd-field"><label>Descrizione lunga (riga info in pagina)</label><textarea id="f-long" style="min-height:96px"></textarea></div>
+        <div class="bd-field"><label>Skills (una per riga)</label><textarea id="f-skills" placeholder="Editorial&#10;Graphic design"></textarea></div>
+        <div class="bd-row">
+          <div class="bd-field"><label>Aspect card homepage</label>
+            <select id="f-cardaspect"><option value="aspect-[3/2]">3/2 (default)</option><option value="aspect-[16/9]">16/9</option><option value="aspect-[16/11]">16/11</option><option value="">nessuno</option></select>
+          </div>
+          <div class="bd-field"><label>Nota footer (es. crediti brevi)</label><input id="f-footnote" placeholder="Personal project…" /></div>
+        </div>
+        <div class="bd-field"><label>Data footer (es. May 2026)</label><input id="f-footdate" placeholder="May 2026" /></div>
+        <h3>Hero — slideshow di apertura (skills a sx + media a dx)</h3>
+        <p class="bd-hint">Percorsi tipo <code>assets/media/projects/slug/foto-01.jpg</code> o <code>.mp4</code>. Le prime 3 finiscono anche nella card homepage.</p>
+        <div id="hero-media"></div>
+        <button class="bd-btn" id="hero-add" type="button">+ aggiungi media hero</button>
+      </div>
+
+      <div class="bd-card">
+        <h2>2 · Blocchi contenuto (struttura bloccata)</h2>
+        <div class="bd-btnrow" id="add-block-btns">
+          <button class="bd-btn" data-add="full" type="button">+ Full-width 12</button>
+          <button class="bd-btn" data-add="duo" type="button">+ Doppia 6+6</button>
+          <button class="bd-btn" data-add="textmedia" type="button">+ Testo 2 + media 10</button>
+          <button class="bd-btn" data-add="textfull" type="button">+ Testo pieno 12</button>
+          <button class="bd-btn" data-add="videoflat" type="button">+ Video flatplan 2+10</button>
+          <button class="bd-btn" data-add="flipbook" type="button">+ Flipbook</button>
+          <button class="bd-btn" data-add="credits3" type="button">+ Crediti 3+6+3</button>
+        </div>
+        <p class="bd-hint">Regole fisse: griglia 12 col, classi <code>columns gap-4 mb-4</code>, slideshow con <code>data-autoplay</code>, video sempre <code>playsinline data-autoplay loop muted</code>. Tu riempi solo testi e percorsi.</p>
+        <div id="blocks"></div>
+      </div>
+
+      <div class="bd-card bd-export">
+        <h2>3 · Esporta</h2>
+        <div class="bd-btnrow">
+          <button class="bd-btn primary" id="btn-generate" type="button">Genera anteprima + codice</button>
+          <button class="bd-btn" id="btn-dl-html" type="button">↓ pagina .html</button>
+          <button class="bd-btn" id="btn-dl-json" type="button">↓ specifica .json</button>
+        </div>
+        <div class="bd-field"><label>Carica specifica .json (es. la prova TBD5)</label>
+          <div class="bd-btnrow"><input type="file" id="file-spec" accept=".json,application/json" style="font-size:12px" />
+          <button class="bd-btn" id="btn-load-tbd5" type="button">Carica prova TBD5</button></div>
+        </div>
+        <h3>projects/&lt;slug&gt;.html</h3>
+        <div class="bd-btnrow"><button class="bd-btn" data-copy="out-page" type="button">Copia pagina</button></div>
+        <textarea id="out-page" readonly></textarea>
+        <h3>Snippet ① — card colonna Projects (incolla sopra <code>&lt;!-- NEW-PROJECT-CARD --&gt;</code>)</h3>
+        <div class="bd-btnrow"><button class="bd-btn" data-copy="out-card" type="button">Copia card</button></div>
+        <textarea id="out-card" readonly></textarea>
+        <h3>Snippet ② — overlay vuoto (incolla sopra <code>&lt;!-- NEW-PROJECT-OVERLAY --&gt;</code>)</h3>
+        <div class="bd-btnrow"><button class="bd-btn" data-copy="out-overlay" type="button">Copia overlay</button></div>
+        <textarea id="out-overlay" readonly></textarea>
+        <h3>Snippet ③ — riga Projects index (incolla sopra <code>&lt;!-- NEW-PROJECT-INDEX --&gt;</code>)</h3>
+        <div class="bd-btnrow"><button class="bd-btn" data-copy="out-index" type="button">Copia riga index</button></div>
+        <textarea id="out-index" readonly></textarea>
+      </div>
+
+      <div class="bd-card">
+        <h2>4 · Inserisci in index.html (senza copia-incolla)</h2>
+        <p class="bd-hint">Il browser non può scrivere file da solo: salva la specifica qui sotto in <code>exports/</code>, poi lancia lo script locale che scrive <code>projects/&lt;slug&gt;.html</code> e inserisce i 3 snippet sopra gli ancoraggi <code>NEW-PROJECT-*</code>.</p>
+        <div class="bd-btnrow">
+          <button class="bd-btn" id="btn-dl-spec" type="button">↓ salva specifica in exports/</button>
+          <button class="bd-btn" id="btn-copy-apply" type="button">Copia comando apply</button>
+        </div>
+        <div class="bd-field"><label>Comando (dalla root del repo)</label><input id="apply-cmd" readonly value="node project-builder/apply.mjs project-builder/exports/progetto.json" /></div>
+        <p class="bd-hint">Opzioni: <code>--dry-run</code> (anteprima senza scrivere) · <code>--force</code> (rigenera uno slug già inserito) · <code>--only-index</code> (salta <code>projects/*.html</code>). Dettagli in <code>project-builder/apply.mjs</code>.</p>
+      </div>
+    </div>
+
+    <div class="bd-preview">
+      <div class="bd-previewbar"><span>Anteprima pagina (stesso CSS del sito)</span><span id="pv-count"></span></div>
+      <div class="bd-previewbody"><div class="project-standalone"><div class="project-standalone-inner" id="preview"></div></div></div>
+    </div>
+  </div>
+</div>
+<script src="./builder.js"></script>
+</body>
+</html>

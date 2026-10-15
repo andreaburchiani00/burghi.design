@@ -1,0 +1,3 @@
+# Vercel deploy ignore — local-only helpers (never published to burghi.design)
+project-builder/
+tools/
