@@ -116,6 +116,19 @@
     if (btn) addBlock(btn.getAttribute('data-add'));
   });
 
+  // Accordions (left column sections + hero): button toggles its panel
+  function setAcc(id, open) {
+    const btn = document.querySelector('[data-acc][aria-controls="' + id + '"]');
+    const body = document.getElementById(id);
+    if (btn) btn.setAttribute('aria-expanded', String(!!open));
+    if (body) body.hidden = !open;
+  }
+  document.querySelectorAll('[data-acc]').forEach((btn) => btn.addEventListener('click', () => {
+    const id = btn.getAttribute('aria-controls');
+    const willOpen = btn.getAttribute('aria-expanded') !== 'true';
+    setAcc(id, willOpen);
+  }));
+
   /* ---------- generators (mirror existing pages) ---------- */
   function skillsHtml(skills) {
     return skills.map((s) => '<img class="icon-svg" src="../assets/icons/info.svg" alt=""> ' + esc(s)).join('<br />\n');
@@ -551,6 +564,8 @@
       if (nb.type === 'flipbook') (nb.media || []).forEach((x) => { x.type = 'image'; });
       return nb;
     });
+    // Hero già compilato? chiudi il suo accordion per alleggerire la colonna
+    if ((m.hero || []).length) setAcc('acc-hero', false);
     generate();
   }
   async function loadSpecUrl(url) {

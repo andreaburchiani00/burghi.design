@@ -27,14 +27,15 @@
     .bd-head h1 { font-size: 22px; font-weight: 400; letter-spacing: -0.11px; }
     .bd-head h1 .bd-hint { letter-spacing: 0; }
     .bd-head p { color: var(--bd-body); font-size: 13px; max-width: 640px; }
-    .bd-grid { display: grid; grid-template-columns: 460px 1fr; gap: 16px; align-items: start; }
+    .bd-grid { display: grid; grid-template-columns: 460px 1fr; gap: 24px; align-items: start; }
     @media (max-width: 1100px) { .bd-grid { grid-template-columns: 1fr; } }
-    .bd-card { background: var(--bd-card); border: 1px solid var(--bd-line); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+    .bd-card { background: var(--bd-card); border: 1px solid var(--bd-line); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
     .bd-card h2 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .88px; margin-bottom: 10px; color: var(--bd-ink); }
+    .bd-sep { border: 0; border-top: 1px solid var(--bd-line-soft); margin: 20px 0; }
     .bd-card h3 { font-size: 13px; margin: 10px 0 6px; }
     .bd-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .bd-field { margin-bottom: 8px; }
-    .bd-field label { display: block; font-size: 12px; color: var(--bd-muted); margin-bottom: 3px; }
+    .bd-field { margin-bottom: 12px; }
+    .bd-field label { display: block; font-size: 12px; color: var(--bd-body); margin-bottom: 4px; }
     .bd-field input, .bd-field select, .bd-field textarea {
       width: 100%; font: inherit; font-size: 13px; padding: 7px 8px;
       border: 1px solid var(--bd-line); border-radius: 8px; background: var(--bd-card); color: var(--bd-ink);
@@ -43,7 +44,7 @@
       outline: none; border-color: var(--bd-accent);
     }
     .bd-field textarea { min-height: 64px; resize: vertical; }
-    .bd-hint { font-size: 12px; color: var(--bd-muted); }
+    .bd-hint { font-size: 12px; color: var(--bd-body); }
     .bd-media { border: 1px dashed var(--bd-line); border-radius: 6px; padding: 8px; margin-bottom: 6px; }
     .bd-media .bd-row { grid-template-columns: 110px 1fr; }
     .bd-btn { font: inherit; font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--bd-line); background: var(--bd-card); color: var(--bd-ink); cursor: pointer; }
@@ -51,6 +52,9 @@
     .bd-btn.primary { background: var(--bd-accent); color: #fff; border-color: var(--bd-accent); }
     .bd-btn.primary:hover { background: var(--bd-accent-active); border-color: var(--bd-accent-active); }
     .bd-btn.danger { color: var(--bd-error); }
+    .bd-btn:focus-visible, .bd-acc-head:focus-visible { outline: 2px solid var(--bd-accent); outline-offset: 2px; }
+    .bd-btn.dl { background: var(--bd-ink); color: var(--bd-canvas); border-color: var(--bd-ink); }
+    .bd-btn.dl:hover { background: #1d1c17; border-color: #1d1c17; }
     .bd-btnrow { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
     .bd-iconbtns { display: flex; gap: 4px; }
     .bd-iconbtns .bd-btn { padding: 4px 8px; font-size: 12px; }
@@ -62,17 +66,29 @@
     .bd-canvasbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--bd-line); font-size: 12px; color: var(--bd-muted); }
     .bd-canvasbody { max-height: 72vh; overflow: auto; }
     .bd-canvasbody .project-standalone-inner { max-width: 100%; }
-    .bd-cblock { border: 1px dashed transparent; border-radius: 6px; margin-bottom: 4px; }
+    .bd-cblock { border: 1px dashed transparent; border-radius: 6px; margin-bottom: 8px; }
     .bd-cblock:hover { border-color: var(--bd-line); }
     .bd-cblock.is-open { border-color: var(--bd-ink); border-style: solid; }
-    .bd-ctoolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 5px 8px; background: var(--bd-canvas-soft); border-bottom: 1px dashed var(--bd-line); font-size: 12px; border-radius: 6px 6px 0 0; }
+    .bd-ctoolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 12px; background: var(--bd-canvas-soft); border-bottom: 1px dashed var(--bd-line); font-size: 12px; border-radius: 6px 6px 0 0; }
     .bd-ctitle small { color: var(--bd-muted); font-weight: normal; }
-    .bd-cform { padding: 10px 12px; background: var(--bd-canvas-soft); border-top: 1px dashed var(--bd-line); }
+    .bd-cform { padding: 16px; background: var(--bd-canvas-soft); border-top: 1px dashed var(--bd-line); }
     .bd-cempty { border: 2px dashed var(--bd-line); border-radius: 8px; margin: 16px; padding: 36px 16px; text-align: center; color: var(--bd-muted); font-size: 13px; }
     .bd-cadd { border-top: 1px solid var(--bd-line); padding: 8px 14px 4px; background: var(--bd-card); }
     .bd-modlist { list-style: none; margin: 10px 0 0; padding: 0; font-size: 12px; color: var(--bd-muted); }
     .bd-modlist li { margin-bottom: 4px; }
     .bd-modlist strong { color: var(--bd-ink); }
+    /* Accordions (left column sections) */
+    .bd-acc-head { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: 0; padding: 2px; margin: 0; font: inherit; color: inherit; cursor: pointer; text-align: left; border-radius: 8px; }
+    .bd-step { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 9999px; font-size: 12px; font-weight: 600; flex: none; }
+    .bd-step.is-ink { background: var(--bd-ink); color: var(--bd-canvas); }
+    .bd-step.is-accent { background: var(--bd-accent); color: #fff; }
+    .bd-step.is-green { background: var(--bd-success); color: #fff; }
+    .bd-acc-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .88px; }
+    .bd-acc-head.sub .bd-acc-title { font-size: 13px; font-weight: 600; text-transform: none; letter-spacing: 0; }
+    .bd-chev { margin-left: auto; color: var(--bd-muted); font-size: 14px; transition: transform .15s ease; }
+    .bd-acc-head[aria-expanded="false"] .bd-chev { transform: rotate(-90deg); }
+    .bd-acc-body { margin-top: 14px; }
+    @media (prefers-reduced-motion: reduce) { .bd-chev { transition: none; } }
     .bd-pv-slideshow { position: relative; }
     .bd-pv-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.5); color: #fff; border: 0; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; }
     .bd-pv-prev { left: 8px; } .bd-pv-next { right: 8px; }
@@ -94,7 +110,12 @@
   <div class="bd-grid">
     <div>
       <div class="bd-card">
-        <h2>1 · Scheda progetto</h2>
+        <button class="bd-acc-head" type="button" data-acc aria-expanded="true" aria-controls="acc-1">
+          <span class="bd-step is-ink" aria-hidden="true">1</span>
+          <span class="bd-acc-title">Scheda progetto</span>
+          <span class="bd-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="bd-acc-body" id="acc-1">
         <div class="bd-row">
           <div class="bd-field"><label>Slug (cartella/file, es. <code>lagne-zine</code>)</label><input id="f-slug" placeholder="nome-progetto" /></div>
           <div class="bd-field"><label>Anno</label><input id="f-year" placeholder="2026" inputmode="numeric" /></div>
@@ -121,14 +142,26 @@
           <div class="bd-field"><label>Nota footer (es. crediti brevi)</label><input id="f-footnote" placeholder="Personal project…" /></div>
         </div>
         <div class="bd-field"><label>Data footer (es. May 2026)</label><input id="f-footdate" placeholder="May 2026" /></div>
-        <h3>Hero — slideshow di apertura (skills a sx + media a dx)</h3>
-        <p class="bd-hint">Percorsi tipo <code>assets/media/projects/slug/foto-01.jpg</code> o <code>.mp4</code>. Le prime 3 finiscono anche nella card homepage.</p>
-        <div id="hero-media"></div>
-        <button class="bd-btn" id="hero-add" type="button">+ aggiungi media hero</button>
+        <hr class="bd-sep" />
+        <button class="bd-acc-head sub" type="button" data-acc aria-expanded="true" aria-controls="acc-hero">
+          <span class="bd-acc-title">Hero — slideshow di apertura</span>
+          <span class="bd-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="bd-acc-body" id="acc-hero">
+          <p class="bd-hint">Skills a sx + media a dx. Percorsi tipo <code>assets/media/projects/slug/foto-01.jpg</code> o <code>.mp4</code>. Le prime 3 finiscono anche nella card homepage.</p>
+          <div id="hero-media"></div>
+          <button class="bd-btn" id="hero-add" type="button">+ aggiungi media hero</button>
+        </div>
+        </div>
       </div>
 
       <div class="bd-card">
-        <h2>2 · Moduli (struttura bloccata)</h2>
+        <button class="bd-acc-head" type="button" data-acc aria-expanded="true" aria-controls="acc-2">
+          <span class="bd-step is-accent" aria-hidden="true">2</span>
+          <span class="bd-acc-title">Moduli (struttura bloccata)</span>
+          <span class="bd-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="bd-acc-body" id="acc-2">
         <p class="bd-hint">Scegli un modulo: finisce in fondo al foglio di lavoro a destra, dove lo compili dentro la pagina vera (✎ Modifica) e lo sposti con ↑ ↓.</p>
         <div class="bd-btnrow" id="add-block-btns">
           <button class="bd-btn" data-add="full" type="button">+ Full-width 12</button>
@@ -148,14 +181,20 @@
           <li><strong>Flipbook</strong> — sequenza di immagini con scrub</li>
           <li><strong>Crediti</strong> — foto (3) + team/testo (6) + data (3)</li>
         </ul>
+        </div>
       </div>
 
       <div class="bd-card bd-export">
-        <h2>3 · Esporta</h2>
+        <button class="bd-acc-head" type="button" data-acc aria-expanded="true" aria-controls="acc-3">
+          <span class="bd-step is-green" aria-hidden="true">3</span>
+          <span class="bd-acc-title">Esporta</span>
+          <span class="bd-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="bd-acc-body" id="acc-3">
         <div class="bd-btnrow">
           <button class="bd-btn primary" id="btn-generate" type="button">Rigenera codice</button>
-          <button class="bd-btn" id="btn-dl-html" type="button">↓ pagina .html</button>
-          <button class="bd-btn" id="btn-dl-json" type="button">↓ specifica .json</button>
+          <button class="bd-btn dl" id="btn-dl-html" type="button">↓ pagina .html</button>
+          <button class="bd-btn dl" id="btn-dl-json" type="button">↓ specifica .json</button>
         </div>
         <div class="bd-field"><label>Carica specifica .json (es. la prova TBD5)</label>
           <div class="bd-btnrow"><input type="file" id="file-spec" accept=".json,application/json" style="font-size:12px" />
@@ -173,6 +212,7 @@
         <h3>Snippet ③ — riga Projects index (incolla sopra <code>&lt;!-- NEW-PROJECT-INDEX --&gt;</code>)</h3>
         <div class="bd-btnrow"><button class="bd-btn" data-copy="out-index" type="button">Copia riga index</button></div>
         <textarea id="out-index" readonly></textarea>
+        </div>
       </div>
     </div>
 
