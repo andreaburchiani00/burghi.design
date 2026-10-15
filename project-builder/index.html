@@ -44,11 +44,22 @@
     .bd-errors { background: #fff5f5; border: 1px solid #e5b4b4; color: #900; border-radius: 8px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; }
     .bd-ok { background: #f2fbf4; border: 1px solid #bfe3c8; color: #14532d; border-radius: 8px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; }
     .bd-export textarea { width: 100%; min-height: 130px; font-family: ui-monospace, monospace; font-size: 11px; padding: 8px; border: 1px solid var(--bd-line); border-radius: 6px; }
-    /* Preview pane reuses site classes for fidelity */
-    .bd-preview { position: sticky; top: 12px; background: #fff; border: 1px solid var(--bd-line); border-radius: 10px; overflow: hidden; }
-    .bd-previewbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--bd-line); font-size: 12px; color: var(--bd-muted); }
-    .bd-previewbody { max-height: 78vh; overflow: auto; }
-    .bd-previewbody .project-standalone-inner { max-width: 100%; }
+    /* Canvas pane: the real page under construction (not a preview) */
+    .bd-canvas { position: sticky; top: 12px; background: #fff; border: 1px solid var(--bd-line); border-radius: 10px; overflow: hidden; }
+    .bd-canvasbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--bd-line); font-size: 12px; color: var(--bd-muted); }
+    .bd-canvasbody { max-height: 72vh; overflow: auto; }
+    .bd-canvasbody .project-standalone-inner { max-width: 100%; }
+    .bd-cblock { border: 1px dashed transparent; border-radius: 6px; margin-bottom: 4px; }
+    .bd-cblock:hover { border-color: var(--bd-line); }
+    .bd-cblock.is-open { border-color: var(--bd-ink); border-style: solid; }
+    .bd-ctoolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 5px 8px; background: #f6f6f4; border-bottom: 1px dashed var(--bd-line); font-size: 12px; border-radius: 6px 6px 0 0; }
+    .bd-ctitle small { color: var(--bd-muted); font-weight: normal; }
+    .bd-cform { padding: 10px 12px; background: #fcfcfa; border-top: 1px dashed var(--bd-line); }
+    .bd-cempty { border: 2px dashed var(--bd-line); border-radius: 8px; margin: 16px; padding: 36px 16px; text-align: center; color: var(--bd-muted); font-size: 13px; }
+    .bd-cadd { border-top: 1px solid var(--bd-line); padding: 8px 14px 4px; background: #fff; }
+    .bd-modlist { list-style: none; margin: 10px 0 0; padding: 0; font-size: 12px; color: var(--bd-muted); }
+    .bd-modlist li { margin-bottom: 4px; }
+    .bd-modlist strong { color: var(--bd-ink); }
     .bd-pv-slideshow { position: relative; }
     .bd-pv-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.5); color: #fff; border: 0; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; }
     .bd-pv-prev { left: 8px; } .bd-pv-next { right: 8px; }
@@ -60,7 +71,7 @@
   <div class="bd-head">
     <div>
       <h1>New Project Builder <span class="bd-hint">(locale — non pubblicato)</span></h1>
-      <p>Compili la scheda, aggiungi blocchi colonna con struttura bloccata, controlli l'anteprima e scarichi la pagina + gli snippet per <code>index.html</code>. Apri con <code>http://localhost:8000/project-builder/</code>.</p>
+      <p>Compili la scheda a sinistra, aggiungi i moduli e costruisci la pagina vera nel foglio di lavoro a destra. Poi scarichi la pagina + gli snippet per <code>index.html</code>.</p>
     </div>
     <div><a class="bd-btn" href="../">← torna al sito</a></div>
   </div>
@@ -104,7 +115,8 @@
       </div>
 
       <div class="bd-card">
-        <h2>2 · Blocchi contenuto (struttura bloccata)</h2>
+        <h2>2 · Moduli (struttura bloccata)</h2>
+        <p class="bd-hint">Scegli un modulo: finisce in fondo al foglio di lavoro a destra, dove lo compili dentro la pagina vera (✎ Modifica) e lo sposti con ↑ ↓.</p>
         <div class="bd-btnrow" id="add-block-btns">
           <button class="bd-btn" data-add="full" type="button">+ Full-width 12</button>
           <button class="bd-btn" data-add="duo" type="button">+ Doppia 6+6</button>
@@ -114,14 +126,21 @@
           <button class="bd-btn" data-add="flipbook" type="button">+ Flipbook</button>
           <button class="bd-btn" data-add="credits3" type="button">+ Crediti 3+6+3</button>
         </div>
-        <p class="bd-hint">Regole fisse: griglia 12 col, classi <code>columns gap-4 mb-4</code>, slideshow con <code>data-autoplay</code>, video sempre <code>playsinline data-autoplay loop muted</code>. Tu riempi solo testi e percorsi.</p>
-        <div id="blocks"></div>
+        <ul class="bd-modlist">
+          <li><strong>Full-width</strong> — 1 media a tutta larghezza (12)</li>
+          <li><strong>Doppia</strong> — 2 media affiancati (6 + 6)</li>
+          <li><strong>Testo + media</strong> — nota Index (2) + media (10)</li>
+          <li><strong>Testo pieno</strong> — paragrafo Index (12)</li>
+          <li><strong>Video flatplan</strong> — etichetta (2) + video 17/10</li>
+          <li><strong>Flipbook</strong> — sequenza di immagini con scrub</li>
+          <li><strong>Crediti</strong> — foto (3) + team/testo (6) + data (3)</li>
+        </ul>
       </div>
 
       <div class="bd-card bd-export">
         <h2>3 · Esporta</h2>
         <div class="bd-btnrow">
-          <button class="bd-btn primary" id="btn-generate" type="button">Genera anteprima + codice</button>
+          <button class="bd-btn primary" id="btn-generate" type="button">Rigenera codice</button>
           <button class="bd-btn" id="btn-dl-html" type="button">↓ pagina .html</button>
           <button class="bd-btn" id="btn-dl-json" type="button">↓ specifica .json</button>
         </div>
@@ -142,22 +161,23 @@
         <div class="bd-btnrow"><button class="bd-btn" data-copy="out-index" type="button">Copia riga index</button></div>
         <textarea id="out-index" readonly></textarea>
       </div>
-
-      <div class="bd-card">
-        <h2>4 · Inserisci in index.html (senza copia-incolla)</h2>
-        <p class="bd-hint">Il browser non può scrivere file da solo: salva la specifica qui sotto in <code>exports/</code>, poi lancia lo script locale che scrive <code>projects/&lt;slug&gt;.html</code> e inserisce i 3 snippet sopra gli ancoraggi <code>NEW-PROJECT-*</code>.</p>
-        <div class="bd-btnrow">
-          <button class="bd-btn" id="btn-dl-spec" type="button">↓ salva specifica in exports/</button>
-          <button class="bd-btn" id="btn-copy-apply" type="button">Copia comando apply</button>
-        </div>
-        <div class="bd-field"><label>Comando (dalla root del repo)</label><input id="apply-cmd" readonly value="node project-builder/apply.mjs project-builder/exports/progetto.json" /></div>
-        <p class="bd-hint">Opzioni: <code>--dry-run</code> (anteprima senza scrivere) · <code>--force</code> (rigenera uno slug già inserito) · <code>--only-index</code> (salta <code>projects/*.html</code>). Dettagli in <code>project-builder/apply.mjs</code>.</p>
-      </div>
     </div>
 
-    <div class="bd-preview">
-      <div class="bd-previewbar"><span>Anteprima pagina (stesso CSS del sito)</span><span id="pv-count"></span></div>
-      <div class="bd-previewbody"><div class="project-standalone"><div class="project-standalone-inner" id="preview"></div></div></div>
+    <div class="bd-canvas">
+      <div class="bd-canvasbar"><span>Foglio di lavoro — la pagina vera (stesso CSS del sito)</span><span id="cv-count"></span></div>
+      <div class="bd-canvasbody" id="cv-body"><div class="project-standalone" id="cv-frame"><div class="project-standalone-inner" id="canvas"></div></div></div>
+      <div class="bd-cadd">
+        <span class="bd-hint">+ Aggiungi modulo in fondo:</span>
+        <div class="bd-btnrow">
+          <button class="bd-btn" data-add="full" type="button">Full-width 12</button>
+          <button class="bd-btn" data-add="duo" type="button">Doppia 6+6</button>
+          <button class="bd-btn" data-add="textmedia" type="button">Testo 2 + media 10</button>
+          <button class="bd-btn" data-add="textfull" type="button">Testo pieno 12</button>
+          <button class="bd-btn" data-add="videoflat" type="button">Video flatplan 2+10</button>
+          <button class="bd-btn" data-add="flipbook" type="button">Flipbook</button>
+          <button class="bd-btn" data-add="credits3" type="button">Crediti 3+6+3</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

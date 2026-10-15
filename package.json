@@ -6,8 +6,7 @@
     "build": "tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css",
     "dev": "tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --watch",
     "serve": "python3 -m http.server 8000",
-    "new-project": "echo 'Apri http://localhost:8000/project-builder/ (npm run serve in un altro terminale)'",
-    "new-project:apply": "node project-builder/apply.mjs"
+    "new-project": "echo 'Apri http://localhost:8000/project-builder/ (npm run serve in un altro terminale)'"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.17"
