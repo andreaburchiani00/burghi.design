@@ -6,57 +6,70 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Project Builder — burghi.design (locale)</title>
   <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" />
   <style>
-    /* Builder chrome only — never exported into project pages */
-    :root { --bd-line: #ddd; --bd-bg: #f6f6f4; --bd-ink: #111; --bd-muted: #777; }
-    body.builder { overflow: auto; background: var(--bd-bg); color: var(--bd-ink); }
+    /* Builder chrome — Cursor brand (locale, mai esportato nelle pagine progetto) */
+    :root {
+      --bd-canvas: #f7f7f4; --bd-canvas-soft: #fafaf7; --bd-card: #ffffff;
+      --bd-ink: #26251e; --bd-body: #5a5852; --bd-muted: #807d72;
+      --bd-line: #e6e5e0; --bd-line-soft: #efeee8;
+      --bd-accent: #f54e00; --bd-accent-active: #d04200;
+      --bd-error: #cf2d56; --bd-success: #1f8a65;
+      /* alias storici */
+      --bd-bg: var(--bd-canvas);
+    }
+    body.builder { overflow: auto; background: var(--bd-canvas); color: var(--bd-ink);
+      font-family: 'Inter', system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif; }
     .bd-wrap { max-width: 1500px; margin: 0 auto; padding: 20px 20px 120px; }
     .bd-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 16px; }
-    .bd-head h1 { font-size: 22px; }
-    .bd-head p { color: var(--bd-muted); font-size: 13px; max-width: 640px; }
+    .bd-head h1 { font-size: 22px; font-weight: 400; letter-spacing: -0.11px; }
+    .bd-head h1 .bd-hint { letter-spacing: 0; }
+    .bd-head p { color: var(--bd-body); font-size: 13px; max-width: 640px; }
     .bd-grid { display: grid; grid-template-columns: 460px 1fr; gap: 16px; align-items: start; }
     @media (max-width: 1100px) { .bd-grid { grid-template-columns: 1fr; } }
-    .bd-card { background: #fff; border: 1px solid var(--bd-line); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
-    .bd-card h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+    .bd-card { background: var(--bd-card); border: 1px solid var(--bd-line); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+    .bd-card h2 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .88px; margin-bottom: 10px; color: var(--bd-ink); }
     .bd-card h3 { font-size: 13px; margin: 10px 0 6px; }
     .bd-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .bd-field { margin-bottom: 8px; }
     .bd-field label { display: block; font-size: 12px; color: var(--bd-muted); margin-bottom: 3px; }
     .bd-field input, .bd-field select, .bd-field textarea {
       width: 100%; font: inherit; font-size: 13px; padding: 7px 8px;
-      border: 1px solid var(--bd-line); border-radius: 6px; background: #fff; color: var(--bd-ink);
+      border: 1px solid var(--bd-line); border-radius: 8px; background: var(--bd-card); color: var(--bd-ink);
+    }
+    .bd-field input:focus, .bd-field select:focus, .bd-field textarea:focus {
+      outline: none; border-color: var(--bd-accent);
     }
     .bd-field textarea { min-height: 64px; resize: vertical; }
     .bd-hint { font-size: 12px; color: var(--bd-muted); }
     .bd-media { border: 1px dashed var(--bd-line); border-radius: 6px; padding: 8px; margin-bottom: 6px; }
     .bd-media .bd-row { grid-template-columns: 110px 1fr; }
-    .bd-btn { font: inherit; font-size: 13px; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--bd-line); background: #fff; cursor: pointer; }
-    .bd-btn:hover { border-color: #111; }
-    .bd-btn.primary { background: #111; color: #fff; border-color: #111; }
-    .bd-btn.danger { color: #a00; }
+    .bd-btn { font: inherit; font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--bd-line); background: var(--bd-card); color: var(--bd-ink); cursor: pointer; }
+    .bd-btn:hover { border-color: var(--bd-ink); }
+    .bd-btn.primary { background: var(--bd-accent); color: #fff; border-color: var(--bd-accent); }
+    .bd-btn.primary:hover { background: var(--bd-accent-active); border-color: var(--bd-accent-active); }
+    .bd-btn.danger { color: var(--bd-error); }
     .bd-btnrow { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
-    .bd-block { border: 1px solid var(--bd-line); border-radius: 8px; padding: 10px; margin-bottom: 8px; background: #fcfcfb; }
-    .bd-blockhead { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
-    .bd-blockhead strong { font-size: 13px; }
-    .bd-blockhead small { color: var(--bd-muted); font-size: 11px; display: block; }
     .bd-iconbtns { display: flex; gap: 4px; }
     .bd-iconbtns .bd-btn { padding: 4px 8px; font-size: 12px; }
-    .bd-errors { background: #fff5f5; border: 1px solid #e5b4b4; color: #900; border-radius: 8px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; }
-    .bd-ok { background: #f2fbf4; border: 1px solid #bfe3c8; color: #14532d; border-radius: 8px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; }
-    .bd-export textarea { width: 100%; min-height: 130px; font-family: ui-monospace, monospace; font-size: 11px; padding: 8px; border: 1px solid var(--bd-line); border-radius: 6px; }
+    .bd-errors { background: #fdf0f3; border: 1px solid #eeb9c8; color: var(--bd-error); border-radius: 8px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; }
+    .bd-ok { background: #ecf7f2; border: 1px solid #bfe3d2; color: var(--bd-success); border-radius: 8px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; }
+    .bd-export textarea { width: 100%; min-height: 130px; font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace; font-size: 11px; padding: 8px; border: 1px solid var(--bd-line); border-radius: 8px; }
     /* Canvas pane: the real page under construction (not a preview) */
-    .bd-canvas { position: sticky; top: 12px; background: #fff; border: 1px solid var(--bd-line); border-radius: 10px; overflow: hidden; }
+    .bd-canvas { position: sticky; top: 12px; background: var(--bd-card); border: 1px solid var(--bd-line); border-radius: 12px; overflow: hidden; }
     .bd-canvasbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--bd-line); font-size: 12px; color: var(--bd-muted); }
     .bd-canvasbody { max-height: 72vh; overflow: auto; }
     .bd-canvasbody .project-standalone-inner { max-width: 100%; }
     .bd-cblock { border: 1px dashed transparent; border-radius: 6px; margin-bottom: 4px; }
     .bd-cblock:hover { border-color: var(--bd-line); }
     .bd-cblock.is-open { border-color: var(--bd-ink); border-style: solid; }
-    .bd-ctoolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 5px 8px; background: #f6f6f4; border-bottom: 1px dashed var(--bd-line); font-size: 12px; border-radius: 6px 6px 0 0; }
+    .bd-ctoolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 5px 8px; background: var(--bd-canvas-soft); border-bottom: 1px dashed var(--bd-line); font-size: 12px; border-radius: 6px 6px 0 0; }
     .bd-ctitle small { color: var(--bd-muted); font-weight: normal; }
-    .bd-cform { padding: 10px 12px; background: #fcfcfa; border-top: 1px dashed var(--bd-line); }
+    .bd-cform { padding: 10px 12px; background: var(--bd-canvas-soft); border-top: 1px dashed var(--bd-line); }
     .bd-cempty { border: 2px dashed var(--bd-line); border-radius: 8px; margin: 16px; padding: 36px 16px; text-align: center; color: var(--bd-muted); font-size: 13px; }
-    .bd-cadd { border-top: 1px solid var(--bd-line); padding: 8px 14px 4px; background: #fff; }
+    .bd-cadd { border-top: 1px solid var(--bd-line); padding: 8px 14px 4px; background: var(--bd-card); }
     .bd-modlist { list-style: none; margin: 10px 0 0; padding: 0; font-size: 12px; color: var(--bd-muted); }
     .bd-modlist li { margin-bottom: 4px; }
     .bd-modlist strong { color: var(--bd-ink); }
