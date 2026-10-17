@@ -77,6 +77,10 @@
     .bd-modlist { list-style: none; margin: 10px 0 0; padding: 0; font-size: 12px; color: var(--bd-muted); }
     .bd-modlist li { margin-bottom: 4px; }
     .bd-modlist strong { color: var(--bd-ink); }
+    .bd-cluster { margin-bottom: 16px; }
+    .bd-cluster-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .88px; color: var(--bd-body); margin-bottom: 6px; }
+    .bd-cluster-desc { font-size: 12px; color: var(--bd-body); margin-bottom: 10px; }
+    .bd-cluster-btns { gap: 8px; }
     /* Accordions (left column sections) */
     .bd-acc-head { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: 0; padding: 2px; margin: 0; font: inherit; color: inherit; cursor: pointer; text-align: left; border-radius: 8px; }
     .bd-step { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 9999px; font-size: 12px; font-weight: 600; flex: none; }
@@ -178,15 +182,34 @@
         </button>
         <div class="bd-acc-body" id="acc-2">
         <p class="bd-hint">Scegli un modulo: finisce in fondo al foglio di lavoro a destra, dove lo compili dentro la pagina vera (✎ Modifica) e lo sposti con ↑ ↓.</p>
-        <div class="bd-btnrow" id="add-block-btns">
-          <button class="bd-btn" data-add="full" type="button">+ Full-width 12</button>
-          <button class="bd-btn" data-add="duo" type="button">+ Doppia 6+6</button>
-          <button class="bd-btn" data-add="textmedia" type="button">+ Testo 2 + media 10</button>
-          <button class="bd-btn" data-add="textfull" type="button">+ Testo pieno 12</button>
-          <button class="bd-btn" data-add="videoflat" type="button">+ Video flatplan 2+10</button>
-          <button class="bd-btn" data-add="flipbook" type="button">+ Flipbook</button>
-          <button class="bd-btn" data-add="credits3" type="button">+ Crediti 3+6+3</button>
+
+        <div class="bd-cluster">
+          <h3 class="bd-cluster-title">Moduli consolidati</h3>
+          <p class="bd-cluster-desc">Usati regolarmente nelle pagine pubblicate. Pronti all'uso.</p>
+          <div class="bd-btnrow bd-cluster-btns">
+            <button class="bd-btn" data-add="full" type="button">+ Full-width 12</button>
+            <button class="bd-btn" data-add="duo" type="button">+ Doppia 6+6</button>
+            <button class="bd-btn" data-add="textmedia" type="button">+ Testo 2 + media 10</button>
+            <button class="bd-btn" data-add="textfull" type="button">+ Testo pieno 12</button>
+            <button class="bd-btn" data-add="videoflat" type="button">+ Video flatplan 2+10</button>
+            <button class="bd-btn" data-add="flipbook" type="button">+ Flipbook</button>
+            <button class="bd-btn" data-add="credits3" type="button">+ Crediti 3+6+3</button>
+          </div>
         </div>
+
+        <div class="bd-cluster">
+          <h3 class="bd-cluster-title">Moduli mestre (colonne)</h3>
+          <p class="bd-cluster-desc">Strutture di colonne vuote da comporre. Scegli la divisione, poi riempi le celle nel foglio di lavoro.</p>
+          <div class="bd-btnrow bd-cluster-btns">
+            <button class="bd-btn" data-add="cols12" type="button">12 colonne</button>
+            <button class="bd-btn" data-add="cols66" type="button">6 + 6</button>
+            <button class="bd-btn" data-add="cols48" type="button">4 + 8</button>
+            <button class="bd-btn" data-add="cols84" type="button">8 + 4</button>
+            <button class="bd-btn" data-add="cols210" type="button">2 + 10</button>
+            <button class="bd-btn" data-add="cols102" type="button">10 + 2</button>
+          </div>
+        </div>
+
         <ul class="bd-modlist">
           <li><strong>Full-width</strong> — 1 media a tutta larghezza (12)</li>
           <li><strong>Doppia</strong> — 2 media affiancati (6 + 6)</li>
@@ -195,6 +218,9 @@
           <li><strong>Video flatplan</strong> — etichetta (2) + video 17/10</li>
           <li><strong>Flipbook</strong> — sequenza di immagini con scrub</li>
           <li><strong>Crediti</strong> — foto (3) + team/testo (6) + data (3)</li>
+          <li><strong>4 + 8 / 8 + 4</strong> — due celle media, larghezza differenziata</li>
+          <li><strong>2 + 10 / 10 + 2</strong> — cella stretta + cella ampia</li>
+          <li><strong>12 colonne</strong> — cella singola a tutta larghezza</li>
         </ul>
         </div>
       </div>
@@ -227,6 +253,18 @@
         <h3>Snippet ③ — riga Projects index (incolla sopra <code>&lt;!-- NEW-PROJECT-INDEX --&gt;</code>)</h3>
         <div class="bd-btnrow"><button class="bd-btn" data-copy="out-index" type="button">Copia riga index</button></div>
         <textarea id="out-index" readonly></textarea>
+        <hr class="bd-sep" />
+        <div class="bd-field bd-export-guide">
+          <h3>Guida — dove inserire i file esportati</h3>
+          <ul class="bd-modlist">
+            <li><strong>projects/<code>&lt;slug&gt;</code>.html</strong> → cartella <code>projects/</code> del sito (pagina progetto completa, già pronta)</li>
+            <li><strong>Snippet ① card</strong> → incolla sopra <code>&lt;!-- NEW-PROJECT-CARD --&gt;</code> in <code>index.html</code> (card nella colonna Projects homepage)</li>
+            <li><strong>Snippet ② overlay</strong> → incolla sopra <code>&lt;!-- NEW-PROJECT-OVERLAY --&gt;</code> in <code>index.html</code> (guscio overlay vuoto, popolato da JS all'apertura)</li>
+            <li><strong>Snippet ③ riga index</strong> → incolla sopra <code>&lt;!-- NEW-PROJECT-INDEX --&gt;</code> in <code>index.html</code> (riga nell'indice progetti dell'overlay)</li>
+            <li><strong>Spec .json</strong> → salva in <code>project-builder/exports/<code>&lt;slug&gt;</code>.json</code> per poterla ricaricare e modificare dopo nel builder</li>
+          </ul>
+          <p class="bd-hint">Ordine consigliato: 1) salva la pagina in <code>projects/</code>, 2) incolla i 3 snippet in <code>index.html</code>, 3) conserva lo spec .json in <code>exports/</code>.</p>
+        </div>
         </div>
       </div>
     </div>
@@ -244,6 +282,12 @@
           <button class="bd-btn" data-add="videoflat" type="button">Video flatplan 2+10</button>
           <button class="bd-btn" data-add="flipbook" type="button">Flipbook</button>
           <button class="bd-btn" data-add="credits3" type="button">Crediti 3+6+3</button>
+          <button class="bd-btn" data-add="cols12" type="button">12 colonne</button>
+          <button class="bd-btn" data-add="cols66" type="button">6 + 6</button>
+          <button class="bd-btn" data-add="cols48" type="button">4 + 8</button>
+          <button class="bd-btn" data-add="cols84" type="button">8 + 4</button>
+          <button class="bd-btn" data-add="cols210" type="button">2 + 10</button>
+          <button class="bd-btn" data-add="cols102" type="button">10 + 2</button>
         </div>
       </div>
     </div>

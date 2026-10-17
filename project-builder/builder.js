@@ -91,20 +91,29 @@
 
   /* ---------- module palette ---------- */
   const BLOCK_DEFS = {
-    full: { name: 'Full-width', sub: 'columns · 12 · 1 media' },
-    duo: { name: 'Doppia immagine', sub: 'columns · 6 + 6' },
-    textmedia: { name: 'Testo + media', sub: 'columns · 2 (Index) + 10 (media)' },
-    textfull: { name: 'Testo pieno', sub: 'columns · 12 (Index)' },
-    videoflat: { name: 'Video flatplan', sub: 'columns · 2 (label) + 10 (video 17/10)' },
-    flipbook: { name: 'Flipbook', sub: 'slideshow-flipbook frame-1710 · scrub, autoplay 0.5' },
-    credits3: { name: 'Crediti 3+6+3', sub: 'foto 3 · team/testo 6 · data 3' },
+    // --- Moduli consolidati (usati regolarmente nelle pagine pubblicate) ---
+    full: { name: 'Full-width 12', sub: '1 media · tutta larghezza', group: 'consolidati' },
+    duo: { name: 'Doppia 6+6', sub: '2 media · 6 + 6', group: 'consolidati' },
+    textmedia: { name: 'Testo 2 + media 10', sub: 'nota Index + media', group: 'consolidati' },
+    textfull: { name: 'Testo pieno 12', sub: 'paragrafo Index · 12', group: 'consolidati' },
+    videoflat: { name: 'Video flatplan 2+10', sub: 'etichetta + video 17/10', group: 'consolidati' },
+    flipbook: { name: 'Flipbook', sub: 'sequenza immagini · scrub', group: 'consolidati' },
+    credits3: { name: 'Crediti 3+6+3', sub: 'foto · team/testo · data', group: 'consolidati' },
+    // --- Moduli mestre (combinazioni colonne vuote da comporre) ---
+    cols12: { name: '12 colonne', sub: '1 cella a tutta larghezza', group: 'colonne' },
+    cols66: { name: '6 + 6', sub: 'due celle uguali', group: 'colonne' },
+    cols48: { name: '4 + 8', sub: 'cella stretta + larga', group: 'colonne' },
+    cols84: { name: '8 + 4', sub: 'cella larga + stretta', group: 'colonne' },
+    cols210: { name: '2 + 10', sub: 'cella stretta + ampia', group: 'colonne' },
+    cols102: { name: '10 + 2', sub: 'cella ampia + stretta', group: 'colonne' },
   };
 
   function addBlock(type) {
     if (!BLOCK_DEFS[type]) return;
     const b = { id: ++state.uid, type: type, _open: true, left: '', text: '', right: '', media: [{ type: 'image', src: '', alt: '' }] };
-    if (type === 'duo') b.media.push({ type: 'image', src: '', alt: '' });
+    if (type === 'duo' || type === 'cols66') b.media.push({ type: 'image', src: '', alt: '' });
     if (type === 'flipbook') b.media.push({ type: 'image', src: '', alt: '' }, { type: 'image', src: '', alt: '' });
+    if (type === 'cols48' || type === 'cols84' || type === 'cols210' || type === 'cols102') b.media.push({ type: 'image', src: '', alt: '' });
     state.blocks.push(b);
     generate();
     const sec = document.querySelector('#canvas [data-bid="' + b.id + '"]');
@@ -190,6 +199,64 @@
       return '<div class="columns gap-4 mb-4" style="align-items: start"><div class="col col-span-3">' + left + '</div>' +
         '<div class="col col-span-6"><span class="Index">' + para(b.text) + '</span></div>' +
         '<div class="col col-span-3" style="align-self: end"><div class="text-right"><span class="corpo">' + esc(b.right || '') + '</span></div></div></div>';
+    }
+    if (b.type === 'cols12') {
+      if (!b.media[0].src.trim()) return '';
+      const m = b.media[0]; const src = '../' + cleanPath(m.src);
+      const tag = (m.type || guessType(m.src)) === 'video'
+        ? '<video class="w-full" playsinline data-autoplay loop muted preload="metadata"><source src="' + esc(src) + '" type="video/mp4"></video>'
+        : '<img class="w-full" src="' + esc(src) + '" alt="' + esc(m.alt || stateTitle()) + '" loading="lazy">';
+      return '<div class="columns gap-4 mb-4"><div class="col col-span-12">' + tag + '</div></div>';
+    }
+    if (b.type === 'cols66') {
+      const cells = b.media.filter((m) => m.src.trim()).map((m) => {
+        const src = '../' + cleanPath(m.src);
+        const tag = (m.type || guessType(m.src)) === 'video'
+          ? '<video playsinline data-autoplay loop muted preload="metadata"><source src="' + esc(src) + '" type="video/mp4"></video>'
+          : '<img src="' + esc(src) + '" alt="' + esc(m.alt || stateTitle()) + '" loading="lazy">';
+        return '<div class="col col-span-6">' + tag + '</div>';
+      }).join('');
+      return cells ? '<div class="columns gap-4 mb-4">' + cells + '</div>' : '';
+    }
+    if (b.type === 'cols48') {
+      const cells = b.media.filter((m) => m.src.trim()).map((m, i) => {
+        const src = '../' + cleanPath(m.src);
+        const tag = (m.type || guessType(m.src)) === 'video'
+          ? '<video playsinline data-autoplay loop muted preload="metadata"><source src="' + esc(src) + '" type="video/mp4"></video>'
+          : '<img src="' + esc(src) + '" alt="' + esc(m.alt || stateTitle()) + '" loading="lazy">';
+        return '<div class="col col-span-' + (i === 0 ? '4' : '8') + '">' + tag + '</div>';
+      }).join('');
+      return cells ? '<div class="columns gap-4 mb-4">' + cells + '</div>' : '';
+    }
+    if (b.type === 'cols84') {
+      const cells = b.media.filter((m) => m.src.trim()).map((m, i) => {
+        const src = '../' + cleanPath(m.src);
+        const tag = (m.type || guessType(m.src)) === 'video'
+          ? '<video playsinline data-autoplay loop muted preload="metadata"><source src="' + esc(src) + '" type="video/mp4"></video>'
+          : '<img src="' + esc(src) + '" alt="' + esc(m.alt || stateTitle()) + '" loading="lazy">';
+        return '<div class="col col-span-' + (i === 0 ? '8' : '4') + '">' + tag + '</div>';
+      }).join('');
+      return cells ? '<div class="columns gap-4 mb-4">' + cells + '</div>' : '';
+    }
+    if (b.type === 'cols210') {
+      const cells = b.media.filter((m) => m.src.trim()).map((m, i) => {
+        const src = '../' + cleanPath(m.src);
+        const tag = (m.type || guessType(m.src)) === 'video'
+          ? '<video playsinline data-autoplay loop muted preload="metadata"><source src="' + esc(src) + '" type="video/mp4"></video>'
+          : '<img src="' + esc(src) + '" alt="' + esc(m.alt || stateTitle()) + '" loading="lazy">';
+        return '<div class="col col-span-' + (i === 0 ? '2' : '10') + '">' + tag + '</div>';
+      }).join('');
+      return cells ? '<div class="columns gap-4 mb-4">' + cells + '</div>' : '';
+    }
+    if (b.type === 'cols102') {
+      const cells = b.media.filter((m) => m.src.trim()).map((m, i) => {
+        const src = '../' + cleanPath(m.src);
+        const tag = (m.type || guessType(m.src)) === 'video'
+          ? '<video playsinline data-autoplay loop muted preload="metadata"><source src="' + esc(src) + '" type="video/mp4"></video>'
+          : '<img src="' + esc(src) + '" alt="' + esc(m.alt || stateTitle()) + '" loading="lazy">';
+        return '<div class="col col-span-' + (i === 0 ? '10' : '2') + '">' + tag + '</div>';
+      }).join('');
+      return cells ? '<div class="columns gap-4 mb-4">' + cells + '</div>' : '';
     }
     return '';
   }
@@ -313,6 +380,12 @@
     if (b.type === 'videoflat') return '<div class="columns gap-4 mb-4"><div class="col col-span-2"><span class="Index">' + esc(b.left || 'Flatplan') + '</span></div><div class="col col-span-10">' + cvMedia({ type: 'video', src: b.media[0].src, alt: '' }) + '</div></div>';
     if (b.type === 'flipbook') return '<div class="columns gap-4 mb-4"><div class="col col-span-2"><span class="bd-hint">flipbook ' + (b.media || []).filter((m) => m.src.trim()).length + ' frame</span></div><div class="col col-span-10">' + cvSlideshow((b.media || []).filter((m) => m.src.trim())) + '</div></div>';
     if (b.type === 'credits3') return '<div class="columns gap-4 mb-4"><div class="col col-span-3">' + cvMedia(b.media[0] || { src: '' }) + '</div><div class="col col-span-6"><span class="Index">' + (para(b.text) || '<span style="color:#999">team/crediti…</span>') + '</span></div><div class="col col-span-3"><div class="text-right"><span class="corpo">' + esc(b.right || '') + '</span></div></div></div>';
+    if (b.type === 'cols12') return '<div class="columns gap-4 mb-4"><div class="col col-span-12">' + cvMedia(b.media[0]) + '</div></div>';
+    if (b.type === 'cols66') return '<div class="columns gap-4 mb-4"><div class="col col-span-6">' + cvMedia(b.media[0]) + '</div><div class="col col-span-6">' + cvMedia(b.media[1] || { src: '' }) + '</div></div>';
+    if (b.type === 'cols48') return '<div class="columns gap-4 mb-4"><div class="col col-span-4">' + cvMedia(b.media[0]) + '</div><div class="col col-span-8">' + cvMedia(b.media[1] || { src: '' }) + '</div></div>';
+    if (b.type === 'cols84') return '<div class="columns gap-4 mb-4"><div class="col col-span-8">' + cvMedia(b.media[0]) + '</div><div class="col col-span-4">' + cvMedia(b.media[1] || { src: '' }) + '</div></div>';
+    if (b.type === 'cols210') return '<div class="columns gap-4 mb-4"><div class="col col-span-2">' + cvMedia(b.media[0]) + '</div><div class="col col-span-10">' + cvMedia(b.media[1] || { src: '' }) + '</div></div>';
+    if (b.type === 'cols102') return '<div class="columns gap-4 mb-4"><div class="col col-span-10">' + cvMedia(b.media[0]) + '</div><div class="col col-span-2">' + cvMedia(b.media[1] || { src: '' }) + '</div></div>';
     return '';
   }
 
@@ -371,6 +444,11 @@
       h += '<div class="bd-field"><label>Foto sinistra (3)</label>' + mediaRowBare(b.media[0], 0, { noDel: true }) + '</div>' +
         '<div class="bd-field"><label>Testo centrale (Index, team/crediti)</label><textarea data-k="text" style="min-height:120px">' + esc(b.text) + '</textarea></div>' +
         '<div class="bd-field"><label>Data destra (es. Autumn 2026)</label><input data-k="right" value="' + esc(b.right || '') + '" /></div>';
+    }
+    if (b.type === 'cols12' || b.type === 'cols66' || b.type === 'cols48' || b.type === 'cols84' || b.type === 'cols210' || b.type === 'cols102') {
+      h += '<div class="bd-field"><label>Media colonne (' + BLOCK_DEFS[b.type].sub + ')</label>' +
+        (b.media || []).map((fm, fi) => mediaRowBare(fm, fi)).join('') +
+        '</div>';
     }
     return h;
   }
