@@ -650,7 +650,7 @@
   async function loadSpecUrl(url) {
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      if (!res.ok) throw new Error('HTTP ' + res.status + ' — assicurati di usare <code>npm run serve</code> (localhost:8000), non aprire il file direttamente.');
       applySpec(await res.json());
     } catch (e) {
       statusEl.innerHTML = '<div class="bd-errors">Non riesco a caricare <code>' + esc(url) + '</code>: ' + esc(e.message) + '</div>';
@@ -667,4 +667,11 @@
   const qs = new URLSearchParams(location.search);
   if (qs.get('spec')) loadSpecUrl(qs.get('spec'));
   else generate();
+
+  // Avviso se aperto direttamente come file (senza server locale)
+  if (location.protocol === 'file:') {
+    statusEl.innerHTML = '<div class="bd-errors"><strong>Attenzione:</strong> stai aprendo il builder come file locale.<br>' +
+      'Il caricamento spec richiede un server locale.<br>' +
+      'Avvia con <code>npm run serve</code> e apri <code>http://localhost:8000/project-builder/</code>.</div>';
+  }
 })();
