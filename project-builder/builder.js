@@ -645,6 +645,7 @@
     // Hero già compilato? chiudi il suo accordion per alleggerire la colonna
     if ((m.hero || []).length) setAcc('acc-hero', false);
     generate();
+    statusEl.innerHTML = '<div class="bd-ok">Spec caricata: <code>' + esc((s.meta && s.meta.slug) || 'progetto') + '</code> — ' + (s.blocks ? s.blocks.length : 0) + ' blocchi, tema <strong>' + esc((s.meta && s.meta.theme) || 'default') + '</strong>. Pronto per esportare.</div>';
   }
   async function loadSpecUrl(url) {
     try {
