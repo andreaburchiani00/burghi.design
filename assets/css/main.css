@@ -876,6 +876,13 @@ body.theme-black,
 .project-standalone.theme-black {
   background-color: var(--theme-bg);
 }
+.project-standalone.theme-black .nav-fixed {
+  background: var(--theme-bg);
+}
+.project-standalone.theme-black .nav-fixed .headers,
+.project-standalone.theme-black .nav-fixed .headers a {
+  color: #fff;
+}
 
 .overlay-backdrop.theme-black .overlay-page {
   background-color: var(--theme-bg);
