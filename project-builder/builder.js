@@ -9,6 +9,174 @@
 
   const state = { blocks: [], uid: 0 };
 
+/* ---------- spec embeddata TBD5 (funziona senza server) ---------- */
+  const TBD5_SPEC = {
+  "blocks": [
+    {
+      "left": "Format: 168 x 240 mm\nNumber of pages: 128\nCover: Fedrigoni Sirio Vermilion, 290 g\nInside: Soporset Premium Offset, 80 g\nBinding: Elastic-band binding",
+      "media": [
+        {
+          "alt": "TBD5 1",
+          "src": "assets/media/projects/TBD 5/1.jpg",
+          "type": "image"
+        }
+      ],
+      "type": "textmedia"
+    },
+    {
+      "media": [
+        {
+          "alt": "TBD5 6",
+          "src": "assets/media/projects/TBD 5/6.jpg",
+          "type": "image"
+        }
+      ],
+      "type": "full"
+    },
+    {
+      "left": "Flatplan",
+      "media": [
+        {
+          "alt": "",
+          "src": "assets/media/projects/TBD 5/timone.mp4",
+          "type": "video"
+        }
+      ],
+      "type": "videoflat"
+    },
+    {
+      "text": "The document is intended to formally evoke the appearance of the French ‘Cahiers de doléances’: a bureaucratic archive in which complaints are collected as if they were pre-filled forms. The text unfolds along the rectangular navigation grid, labelled 1 to 11, which lists the articles that make up the magazine.",
+      "type": "textfull"
+    },
+    {
+      "media": [
+        {
+          "alt": "TBD5 5.1",
+          "src": "assets/media/projects/TBD 5/5.1.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.2",
+          "src": "assets/media/projects/TBD 5/5.2.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.3",
+          "src": "assets/media/projects/TBD 5/5.3.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.4",
+          "src": "assets/media/projects/TBD 5/5.4.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.5",
+          "src": "assets/media/projects/TBD 5/5.5.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.6",
+          "src": "assets/media/projects/TBD 5/5.6.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.7",
+          "src": "assets/media/projects/TBD 5/5.7.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.8",
+          "src": "assets/media/projects/TBD 5/5.8.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.9",
+          "src": "assets/media/projects/TBD 5/5.9.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.10",
+          "src": "assets/media/projects/TBD 5/5.10.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 5.11",
+          "src": "assets/media/projects/TBD 5/5.11.jpg",
+          "type": "image"
+        }
+      ],
+      "type": "flipbook"
+    },
+    {
+      "media": [
+        {
+          "alt": "TBD5 DSC 8001",
+          "src": "assets/media/projects/TBD 5/foto/DSC_8001.jpg",
+          "type": "image"
+        },
+        {
+          "alt": "TBD5 DSC 8161",
+          "src": "assets/media/projects/TBD 5/foto/DSC_8161.jpg",
+          "type": "image"
+        }
+      ],
+      "type": "duo"
+    },
+    {
+      "media": [
+        {
+          "alt": "TBD5 DSC 8130",
+          "src": "assets/media/projects/TBD 5/foto/DSC_8130.jpg",
+          "type": "image"
+        }
+      ],
+      "right": "Autumn 2026",
+      "text": "Team editoriale:\nIrene Sofia Comi\nRoberto Malaspina\nSofia Pirandello\nIacopo Prinetti\nMiriam Rejas Del Pino\n\nProgetto grafico:\nAndrea Burchiani\nRiccardo Merlotti\n\nSupporto grafico:\nMatteo Biserni\nAndrea Moraschinelli\n\nCaratteri:\nVillette (Fettucciari e Merlotti)\nRonzino (Collletttivo)\n\nPubblicato da:\nTBD Ultramagazine",
+      "type": "credits3"
+    }
+  ],
+  "generator": "project-builder v1",
+  "meta": {
+    "cardAspect": "aspect-[3/2]",
+    "field": "Editorial",
+    "footdate": "",
+    "footnote": "",
+    "hero": [
+      {
+        "alt": "TBD5 DSC 8046",
+        "src": "assets/media/projects/TBD 5/foto/DSC_8046.jpg",
+        "type": "image"
+      },
+      {
+        "alt": "TBD5 DSC 8150",
+        "src": "assets/media/projects/TBD 5/foto/DSC_8150.jpg",
+        "type": "image"
+      },
+      {
+        "alt": "TBD5 DSC 8118",
+        "src": "assets/media/projects/TBD 5/foto/DSC_8118.jpg",
+        "type": "image"
+      },
+      {
+        "alt": "TBD5 DSC 8090",
+        "src": "assets/media/projects/TBD 5/foto/DSC_8090.jpg",
+        "type": "image"
+      }
+    ],
+    "long": "LAGNE is dedicated to the practices, images and theories of lament. Far from being a mere expression of weakness or passivity, lament permeates rituals, narratives, artistic practices and contemporary technologies, taking the form, in turn, of protest, healing, resistance, irony or assertion.\n\nThe fifth issue of TBD Ultramagazine explores lament as a cultural form, a political gesture and an aesthetic device. Through essays, images and interdisciplinary reflections, the issue explores the complexity of lament as a practice capable of redefining the relationships between subjectivity and collectivity, vulnerability and power, voice and listening.",
+    "short": "LAGNE is dedicated to the practices, images and theories of lament. Far from being a mere expression of weakness or passivity, lament permeates rituals...",
+    "skills": [
+      "Editorial",
+      "Graphic design"
+    ],
+    "slug": "tbd5",
+    "theme": "black",
+    "title": "TBD5",
+    "year": "2026"
+  }
+};
+
   /* ---------- helpers ---------- */
   function esc(s) {
     return String(s == null ? '' : s)
@@ -662,7 +830,7 @@
     r.onload = () => { try { applySpec(JSON.parse(r.result)); } catch (err) { statusEl.innerHTML = '<div class="bd-errors">JSON non valido.</div>'; } };
     r.readAsText(f);
   });
-  $('btn-load-tbd5').addEventListener('click', () => loadSpecUrl('./exports/tbd5.json'));
+  $('btn-load-tbd5').addEventListener('click', () => applySpec(TBD5_SPEC));
 
   const qs = new URLSearchParams(location.search);
   if (qs.get('spec')) loadSpecUrl(qs.get('spec'));
